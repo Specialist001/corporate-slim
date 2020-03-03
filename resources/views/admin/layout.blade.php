@@ -1,4 +1,4 @@
-@extends('ui.layout')
+@extends('common.layout')
 
 @section('menu-left')
     @include('admin.menu-left')
