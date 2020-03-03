@@ -2,66 +2,34 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
 
-        <title>Laravel</title>
+        <meta name="csrf-token" content="{{ csrf_token() }}">
+
+        <title>@yield('title', config('app.name'))</title>
+
+        <meta name="msapplication-TileColor" content="#151334">
+        <meta name="theme-color" content="#151334">
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
 
+        <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/owl/css/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/owl/css/owl.carousel.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/magnific-popup/css/magnific-popup.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/themify-icons/css/themify-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/nice-select/css/nice-select.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/flaticon/css/flaticon.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/gijgo/css/gijgo.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/animate/css/animate.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/slick/css/slick.css') }}" rel="stylesheet">
+        <link href="{{ asset('vendor/slicknav/css/slicknav.css') }}" rel="stylesheet">
+
         <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Nunito', sans-serif;
-                font-weight: 200;
-                height: 100vh;
-                margin: 0;
-            }
-
-            .full-height {
-                height: 100vh;
-            }
-
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
-
-            .position-ref {
-                position: relative;
-            }
-
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 13px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
+        @stack('styles')
     </head>
     <body>
         <div class="flex-center position-ref full-height">
