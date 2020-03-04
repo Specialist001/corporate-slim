@@ -11,5 +11,5 @@
 {{--<!-- END: footer bottom -->--}}
 
 @push('styles')
-    <link href="{{ asset('ui/footer.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('ui/footer.css') }}" rel="stylesheet">--}}
 @endpush

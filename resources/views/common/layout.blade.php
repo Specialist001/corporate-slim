@@ -35,11 +35,11 @@
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
 
     <!-- ===== Bootstrap CSS ===== -->
-    <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- ===== Plugin CSS ===== -->
     <link href="{{ asset('vendor/chartist-js/css/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/chartist-plugin-tooltip-master/css/chartist-plugin-tooltip-master.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/chartist-plugin-tooltip-master/css/chartist-plugin-tooltip.css') }}" rel="stylesheet">
     <!-- ===== Animation CSS ===== -->
     <link href="{{ asset('vendor/animate/css/animate.css') }}" rel="stylesheet">
     <!-- ===== Custom CSS ===== -->
@@ -50,7 +50,7 @@
     @stack('styles')
 
 </head>
-<body class="mini-sidebar {{ Request::cookie("menu_left_minified", "cat__menu-left--visible") }}">
+<body class="{{ Request::cookie("menu_left_minified", "mini-sidebar") }}">
 <div id="wrapper">
     <div class="preloader">
         <div class="cssload-speeding-wheel"></div>
@@ -83,47 +83,26 @@
                 {{ session('danger') }}
             @endcomponent
         @endif
-            
+
         @yield('content')
     </div>
     <!-- ===== Page-Content-End ===== -->
 
 </div>
 
-
-<div class="cat__top-bar">
-    @yield('top-bar')
-</div>
-<div class="cat__content">
-
-    @if (session()->has('success'))
-        @component('component.alert', ['type' => 'success'])
-            {{ session('success') }}
-        @endcomponent
-    @endif
-    @if (session()->has('warning'))
-        @component('component.alert', ['type' => 'warning'])
-            {{ session('warning') }}
-        @endcomponent
-    @endif
-    @if (session()->has('danger'))
-        @component('component.alert', ['type' => 'danger'])
-            {{ session('danger') }}
-        @endcomponent
-    @endif
-
-    @yield('content')
-    {{--<div class="cat__footer">--}}
-    {{--@yield('footer')--}}
-    {{--</div>--}}
-</div>
-
-<script type="text/javascript" src="{{ asset('vendor/jquery/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/popper.js/popper.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/cookie/plugin.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/autosize/autosize.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/popper/js/popper.min.js') }}"></script>
+<script type="text/javascript" src="{{ asset('admin/bootstrap/js/bootstrap.min.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('vendor/perfect-scrollbar/js/perfect-scrollbar.jquery.min.js') }}"></script>--}}
+<script type="text/javascript" src="{{ asset('vendor/chartist-plugin-tooltip-master/js/chartist-plugin-tooltip.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('vendor/cookie/plugin.js') }}"></script>--}}
+{{--<script type="text/javascript" src="{{ asset('vendor/autosize/autosize.min.js') }}"></script>--}}
+<!-- ===== Slimscroll JavaScript ===== -->
+<script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery.slimscroll.js') }}"></script>
+<!-- ===== Menu Plugin JavaScript ===== -->
+<script type="text/javascript" src="{{ asset('admin/sidebarmenu.js') }}"></script>
+<!-- Custom Theme JavaScript -->
+<script type="text/javascript" src="{{ asset('admin/custom.js') }}"></script>
 <script>
     $.ajaxSetup({
         headers: {

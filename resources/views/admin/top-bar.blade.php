@@ -5,11 +5,11 @@
         <i class="fa fa-bars"></i>
     </a>
     <div class="top-left-part">
-        <a class="logo" href="index.html">
+        <a class="logo" href="/">
             <b>
-                <img src="../plugins/images/logo.png" alt="home" />
+                <img src="{{ asset('images/logo-cubic.png') }}" alt="home" />
             </b>
-            <span><img src="../plugins/images/logo-text.png" alt="homepage" class="dark-logo" /></span>
+            <span><img src="{{ asset('images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
         </a>
     </div>
     <ul class="nav navbar-top-links navbar-left hidden-xs">
@@ -37,7 +37,7 @@
                     <div class="message-center">
                         <a href="javascript:void(0);">
                             <div class="user-img">
-                                <img src="../plugins/images/users/1.jpg" alt="user" class="img-circle">
+                                <img src="{{ asset('images/users/1.jpg') }}" alt="user" class="img-circle">
                                 <span class="profile-status online pull-right"></span>
                             </div>
                             <div class="mail-contnet">
@@ -48,7 +48,7 @@
                         </a>
                         <a href="javascript:void(0);">
                             <div class="user-img">
-                                <img src="../plugins/images/users/2.jpg" alt="user" class="img-circle">
+                                <img src="{{ asset('images/users/2.jpg') }}" alt="user" class="img-circle">
                                 <span class="profile-status busy pull-right"></span>
                             </div>
                             <div class="mail-contnet">
@@ -59,7 +59,7 @@
                         </a>
                         <a href="javascript:void(0);">
                             <div class="user-img">
-                                <img src="../plugins/images/users/3.jpg" alt="user" class="img-circle"><span class="profile-status away pull-right"></span>
+                                <img src="{{ asset('images/users/3.jpg') }}" alt="user" class="img-circle"><span class="profile-status away pull-right"></span>
                             </div>
                             <div class="mail-contnet">
                                 <h5>Arijit Sinh</h5>
@@ -69,7 +69,7 @@
                         </a>
                         <a href="javascript:void(0);">
                             <div class="user-img">
-                                <img src="../plugins/images/users/4.jpg" alt="user" class="img-circle">
+                                <img src="{{ asset('images/users/4.jpg') }}" alt="user" class="img-circle">
                                 <span class="profile-status offline pull-right"></span>
                             </div>
                             <div class="mail-contnet">
@@ -173,18 +173,18 @@
         </li>
     </ul>
 @endsection
-@section('top-bar-right')
-    <div class="cat__top-bar__item">
-        <div class="dropdown">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ \Request::user()->name }}
-            </a>
-            <div class="dropdown-menu dropdown-menu-right">
-                <a href="{{ route('admin.profile.edit')}}" class="dropdown-item"><i class="dropdown-icon icmn-user"></i> @lang('admin.profile')</a>
-                <div class="dropdown-divider"></div>
-                <a href="{{ route('admin.auth.logout') }}" class="dropdown-item text-danger"><i
-                        class="dropdown-icon icmn-exit"></i> @lang('admin.logout')</a>
-            </div>
-        </div>
-    </div>
-@endsection
+{{--@section('top-bar-right')--}}
+{{--    <div class="cat__top-bar__item">--}}
+{{--        <div class="dropdown">--}}
+{{--            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">--}}
+{{--                {{ \Request::user()->name }}--}}
+{{--            </a>--}}
+{{--            <div class="dropdown-menu dropdown-menu-right">--}}
+{{--                <a href="{{ route('admin.profile.edit')}}" class="dropdown-item"><i class="dropdown-icon icmn-user"></i> @lang('admin.profile')</a>--}}
+{{--                <div class="dropdown-divider"></div>--}}
+{{--                <a href="{{ route('admin.auth.logout') }}" class="dropdown-item text-danger"><i--}}
+{{--                        class="dropdown-icon icmn-exit"></i> @lang('admin.logout')</a>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+{{--@endsection--}}

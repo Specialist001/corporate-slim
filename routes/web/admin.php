@@ -5,6 +5,8 @@ Route::group([
     'namespace' => 'Admin',
     'as' => 'admin.'
 ], function () {
+    Route::fallback('ErrorController@notFound')->name('404');
+
     Route::group([
         'namespace' => 'Auth',
         'as' => 'auth.'

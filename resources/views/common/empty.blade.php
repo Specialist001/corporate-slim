@@ -38,8 +38,8 @@
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
 
     <!-- ===== Plugin CSS ===== -->
-    <link href="{{ asset('vendor/chartist-js/css/chartist.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/chartist-plugin-tooltip-master/css/chartist-plugin-tooltip-master.css') }}" rel="stylesheet">
+{{--    <link href="{{ asset('vendor/chartist-js/css/chartist.min.css') }}" rel="stylesheet">--}}
+{{--    <link href="{{ asset('vendor/chartist-plugin-tooltip-master/css/chartist-plugin-tooltip-master.css') }}" rel="stylesheet">--}}
     <!-- ===== Animation CSS ===== -->
     <link href="{{ asset('vendor/animate/css/animate.css') }}" rel="stylesheet">
     <!-- ===== Custom CSS ===== -->
@@ -52,15 +52,14 @@
 </head>
 <body class="mini-sidebar {{ Request::cookie("menu_left_minified", "cat__menu-left--visible") }}">
 <div id="wrapper" class="login-register">
-    <div class="preloader">
-        <div class="cssload-speeding-wheel"></div>
-    </div>
+
     @yield('content')
 </div>
 
 <script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery.min.js') }}"></script>
-<script type="text/javascript" src="{{ asset('vendor/popper/js/popper.js') }}"></script>
+<script type="text/javascript" src="{{ asset('vendor/popper/js/popper.min.js') }}"></script>
 <script type="text/javascript" src="{{ asset('vendor/bootstrap/js/bootstrap.min.js') }}"></script>
+
 <script>
     $.ajaxSetup({
         headers: {
@@ -75,6 +74,6 @@
     });
 </script>
 @stack('scripts')
-<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
+{{--<script type="text/javascript" src="{{ asset('js/app.js') }}"></script>--}}
 </body>
 </html>
