@@ -17,7 +17,10 @@ class CreateNewsTable extends Migration
             $table->bigIncrements('id');
             $table->string('type')->nullable()->default(null);
             $table->string('slug')->nullable()->default(null);
+            $table->string('image')->nullable()->default(null);
+            $table->string('thumb')->nullable()->default(null);
             $table->bigInteger('views')->default(0);
+            $table->bigInteger('order')->default(0);
             $table->boolean('active')->default(1);
 
             $table->timestamps();

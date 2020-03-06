@@ -43,7 +43,7 @@
     <!-- ===== Animation CSS ===== -->
     <link href="{{ asset('vendor/animate/css/animate.css') }}" rel="stylesheet">
     <!-- ===== Custom CSS ===== -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/admin.css') }}" rel="stylesheet">
     <!-- ===== Color CSS ===== -->
     <link href="{{ asset('css/colors/default.css') }}" id="theme" rel="stylesheet">
 

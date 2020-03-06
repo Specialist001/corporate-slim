@@ -36,17 +36,19 @@
 
     <!-- ===== Bootstrap CSS ===== -->
     <link href="{{ asset('admin/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    {{-- <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet"> --}}
 
     <!-- ===== Plugin CSS ===== -->
     <link href="{{ asset('vendor/chartist-js/css/chartist.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/chartist-plugin-tooltip-master/css/chartist-plugin-tooltip.css') }}" rel="stylesheet">
     <!-- ===== Animation CSS ===== -->
     <link href="{{ asset('vendor/animate/css/animate.css') }}" rel="stylesheet">
+    <!-- ===== Toast CSS ===== -->
+    <link href="{{ asset('admin/toast/css/jquery.toast.css') }}" rel="stylesheet">
     <!-- ===== Custom CSS ===== -->
-    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    <link href="{{ asset('admin/admin.css') }}" rel="stylesheet">
     <!-- ===== Color CSS ===== -->
     <link href="{{ asset('css/colors/default.css') }}" id="theme" rel="stylesheet">
-
     @stack('styles')
 
 </head>
@@ -69,22 +71,29 @@
     <!-- ===== Page-Content ===== -->
     <div class="page-wrapper">
         @if (session()->has('success'))
-            @component('component.alert', ['type' => 'success'])
+            @component('component.alert', 
+            ['type' => 'success', 'icon' => 'success', 'position' => 'top-right'])
                 {{ session('success') }}
             @endcomponent
         @endif
         @if (session()->has('warning'))
-            @component('component.alert', ['type' => 'warning'])
+            @component('component.alert', 
+            ['type' => 'warning', 'icon' => 'warning', 'position' => 'top-right'])
                 {{ session('warning') }}
             @endcomponent
         @endif
         @if (session()->has('danger'))
-            @component('component.alert', ['type' => 'danger'])
+            @component('component.alert', 
+            ['type' => 'danger', 'icon' => 'danger', 'position' => 'top-right'])
                 {{ session('danger') }}
             @endcomponent
         @endif
 
-        @yield('content')
+        <div class="container-fluid">
+            <div class="row">
+                @yield('content')
+            </div>
+        </div>
     </div>
     <!-- ===== Page-Content-End ===== -->
 
@@ -101,6 +110,8 @@
 <script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery.slimscroll.js') }}"></script>
 <!-- ===== Menu Plugin JavaScript ===== -->
 <script type="text/javascript" src="{{ asset('admin/sidebarmenu.js') }}"></script>
+
+<script src="{{ asset('admin/toast/js/jquery.toast.js') }}"></script>
 <!-- Custom Theme JavaScript -->
 <script type="text/javascript" src="{{ asset('admin/custom.js') }}"></script>
 <script>

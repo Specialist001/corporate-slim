@@ -13,7 +13,12 @@ return [
     |
     */
 
-    'previous' => '&laquo; Previous',
-    'next' => 'Next &raquo;',
+    'previous' => '&laquo; back',
+    'next' => 'Forward &raquo;',
 
+    'showing' => 'showing ',
+    'to' => '-',
+    'from' => 'From',
+    'entries' => 'records',
+    'no_entries' => 'not records'
 ];

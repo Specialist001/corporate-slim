@@ -52,6 +52,8 @@ use Illuminate\Notifications\Notifiable;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Users\Models\User admins()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Users\Models\User managers()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Users\Models\User users()
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Users\Models\User whereDeletedAt($value)
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
