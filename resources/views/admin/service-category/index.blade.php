@@ -2,13 +2,13 @@
 
 @section('center_content')
 <div class="col-md-12">
-	@component('component.white-box', ['title' => trans('admin.titles.all_news')])
+	@component('component.white-box', ['title' => trans('admin.titles.all_service_category')])
 		@slot('buttons')
-		<a href="{{ route('admin.news.create') }}" class="btn btn-sm btn-primary ml-2">
+		<a href="{{ route('admin.service-category.create') }}" class="btn btn-sm btn-primary ml-2">
 			<span class="d-none d-sm-inline-block">@lang('admin.create')</span> <i class="icmn-plus"></i>
 		</a>
 	    @endslot
-		@if($news->isNotEmpty())
+		@if($serviceCategories->isNotEmpty())
 			<div class="table-responsive">
                 <table class="table color-table primary-table">
                     <thead>
@@ -24,7 +24,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    	@foreach($news as $item)
+                    	@foreach($serviceCategories as $item)
                     		<tr>
                                 <td>{{ $item->id }}</td>
                                 <td>
@@ -34,7 +34,7 @@
                                 </td>
                                 <td>{{ $item->type }}</td>
                                 <td>
-                                    <img src="{{ $item->thumbUrl() }}" class="img-thumbnail" style="width:100px">
+                                    <img src="{{ $item->iconUrl() }}" class="img-thumbnail" style="width:100px">
                                 </td>
                                 <td>{{ $item->views }}</td>
                                 <td>{{ $item->order }}</td>
@@ -64,7 +64,7 @@
         @endif
 
         @slot('bottom')
-    		@include('common.pagination', ['data' => $news])
+    		@include('common.pagination', ['data' => $serviceCategories])
 		@endslot
 
 	@endcomponent

@@ -11,6 +11,16 @@ return [
         'height' => 800,
         'default' => 'uploads/defaults/news.png',
     ],
+    'service_category_image' => [
+        'width' => 1200,
+        'height' => 600,
+        'default' => 'uploads/defaults/service_category.png',
+    ],
+    'service_category_icon' => [
+        'width' => 200,
+        'height' => 200,
+        'default' => 'uploads/defaults/service_category_icon.png',
+    ],
     'news_thumb' => [
         'width' => 500,
         'height' => 250,
