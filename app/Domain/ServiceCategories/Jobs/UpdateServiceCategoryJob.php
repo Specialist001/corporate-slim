@@ -19,7 +19,7 @@ class UpdateServiceCategoryJob
 
     public $serviceCategory;
 
-    public function __construct(ServiceCategory $serviceCategory, ServiceCategoryRequest $request)
+    public function __construct(ServiceCategoryRequest $request, ServiceCategory $serviceCategory)
     {
         $this->serviceCategory = $serviceCategory;
         $this->request = $request;
@@ -33,6 +33,7 @@ class UpdateServiceCategoryJob
     {
         try {
             $serviceCategory = $this->serviceCategory;
+            $serviceCategory->parent_id = $this->request->input('parent_id', 0);
             $serviceCategory->type = $this->request->input('type', null);
             $serviceCategory->order = $this->request->input('order', 0);
             $serviceCategory->active = $this->request->input('active', 1);

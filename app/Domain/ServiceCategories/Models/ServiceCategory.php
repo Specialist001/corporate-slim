@@ -79,6 +79,16 @@ class ServiceCategory extends Model
         return $query->where('active', 1);
     }
 
+    public function children()
+    {
+        return $this->hasMany(static::class, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(self::class, 'id', 'parent_id');
+    }
+
     public static function getImagePath()
     {
         return self::$imagePath;

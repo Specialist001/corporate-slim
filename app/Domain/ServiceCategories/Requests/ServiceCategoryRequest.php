@@ -17,7 +17,7 @@ class ServiceCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'parent_id' => 'nullable|exists:service_categories,id',
+            // 'parent_id' => 'nullable|exists:service_categories,id',
             'active' => 'nullable|boolean',
             'order' => 'nullable|integer',
             'slug' => 'nullable|string|max:255',

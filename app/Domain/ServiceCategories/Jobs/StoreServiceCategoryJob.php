@@ -37,6 +37,7 @@ class StoreServiceCategoryJob
         \DB::beginTransaction();
         try {
             $serviceCategory = new ServiceCategory();
+            $serviceCategory->parent_id = $this->request->input('parent_id', 0);
             $serviceCategory->slug = null;
             $serviceCategory->type = $this->request->input('type', null);
             $serviceCategory->active = $this->request->input('active', 1);
