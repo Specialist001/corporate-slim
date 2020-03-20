@@ -28,13 +28,10 @@ class ServiceCategoriesController extends Controller
 
     public function create()
     {
-
-        $serviceCategory = [];
         $categories = ServiceCategory::with('children')->where('parent_id',0)->get();
         $delimiter = '';
 
         return view('admin.service-categories.create', [
-            
             'categories' => $categories,
             'delimiter' => $delimiter,
         ]);

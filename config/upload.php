@@ -21,6 +21,16 @@ return [
         'height' => 200,
         'default' => 'uploads/defaults/service_category_icon.png',
     ],
+    'service_image' => [
+        'width' => 1200,
+        'height' => 600,
+        'default' => 'uploads/defaults/service.png',
+    ],
+    'service_icon' => [
+        'width' => 200,
+        'height' => 200,
+        'default' => 'uploads/defaults/service_icon.png',
+    ],
     'news_thumb' => [
         'width' => 500,
         'height' => 250,

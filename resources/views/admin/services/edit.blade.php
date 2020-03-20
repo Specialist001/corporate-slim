@@ -1,19 +1,19 @@
 @extends('admin.layout')
 
 @section('center_content')
-	<div class="col-md-12">
-		<form action="{{ route('admin.service-categories.update', $serviceCategory) }}" method="post" enctype="multipart/form-data">
-			@csrf
-			@method('put')
-			@component('component.white-box', ['title' => trans('admin.titles.service_categories').': '.trans('admin.editing')])
-                @include('admin.service-categories._form')
+    <div class="col-md-12">
+        <form action="{{ route('admin.services.update', $service) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('put')
+            @component('component.white-box', ['title' => trans('admin.titles.services').': '.trans('admin.editing')])
+                @include('admin.services._form')
                 @slot('bottom')
-                    <a href="{{ route('admin.service-categories.index') }}" class="btn btn-danger float-left">@lang('admin.back')</a>
+                    <a href="{{ route('admin.services.index') }}" class="btn btn-danger float-left">@lang('admin.back')</a>
                     <button class="btn btn-primary float-right">@lang('admin.save')</button>
                 @endslot
             @endcomponent
-		</form>
-	</div>
+        </form>
+    </div>
 @endsection
 
 @push('scripts')
@@ -22,7 +22,7 @@
             $('#delete_image').on('click', function () {
                 $.ajax({
                     method: "DELETE",
-                    url: "{{ route('admin.service-categories.destroy.image') }}/{{$serviceCategory->id}}",
+                    url: "{{ route('admin.services.destroy.image') }}/{{$service->id}}",
                     success: function(response) {
                         if(response.result === "success") {
                             $('#image').remove();
@@ -39,7 +39,7 @@
             $('#delete_icon').on('click', function () {
                 $.ajax({
                     method: "DELETE",
-                    url: "{{ route('admin.service-categories.destroy.icon') }}/{{$serviceCategory->id}}",
+                    url: "{{ route('admin.services.destroy.icon') }}/{{$service->id}}",
                     success: function(response) {
                         if(response.result === "success") {
                             $('#icon').remove();

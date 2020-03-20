@@ -1,9 +1,9 @@
 <div class="row ">
-    <div class="col-md-3 form-group {!! $errors->first('parent_id', 'has-danger')!!}">
-        <label class="col-form-label-sm" for="parent_id">@lang('admin.parent_category')</label>
-        <select name="parent_id" id="parent_id" class="form-control" required>
-            <option value="0">Без родительской</option>
-            @include('admin.service-categories._categories', ['categories'=>$categories])
+    <div class="col-md-3 form-group {!! $errors->first('service_category_id', 'has-danger')!!}">
+        <label class="col-form-label-sm" for="service_category_id">@lang('admin.category')</label>
+        <select name="service_category_id" id="service_category_id" class="form-control" required>
+            <option value="" disabled selected>Select one</option>
+            @include('admin.services._categories', ['categories'=>$categories])
         </select>
         {!! $errors->first('type', '<small class="form-control-feedback">:message</small>') !!}
     </div>
@@ -33,14 +33,14 @@
 
 </div>
 
-@component('component.translations', ['form' => 'admin.service-categories._translations_form', 'model' => $serviceCategory?? null])@endcomponent
+@component('component.translations', ['form' => 'admin.services._translations_form', 'model' => $service?? null])@endcomponent
 
 <div class="row">
     <div class="col-md-6 form-group {!! $errors->first('image', 'has-danger')!!}">
         <label class="" for="image">@lang('admin.image')</label>
-        @if(isset($serviceCategory) && $serviceCategory->image)
+        @if(isset($service) && $service->image)
             <p id="thumb">
-                <img src="{{$serviceCategory->thumbUrl()}}" alt="{{$serviceCategory->image}}" class="img-thumbnail d-block">
+                <img src="{{$service->thumbUrl()}}" alt="{{$service->image}}" class="img-thumbnail d-block">
                 <small id="delete_image" class="text-danger cur-pointer"><i class="icmn-cross"></i> @lang('admin.destroy')</small>
             </p>
         @endif
@@ -49,9 +49,9 @@
     </div>
     <div class="col-md-2 form-group {!! $errors->first('icon', 'has-danger')!!}">
         <label class="" for="icon">@lang('admin.icon')</label>
-        @if(isset($serviceCategory) && $serviceCategory->icon)
+        @if(isset($service) && $service->icon)
             <p id="thumb">
-                <img src="{{$serviceCategory->thumbUrl()}}" alt="{{$serviceCategory->icon}}" class="img-thumbnail d-block">
+                <img src="{{$service->thumbUrl()}}" alt="{{$service->icon}}" class="img-thumbnail d-block">
                 <small id="delete_icon" class="text-danger cur-pointer"><i class="icmn-cross"></i> @lang('admin.destroy')</small>
             </p>
         @endif

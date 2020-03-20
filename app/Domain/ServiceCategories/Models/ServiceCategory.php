@@ -3,10 +3,12 @@
 namespace App\Domain\ServiceCategories\Models;
 
 
+use App\Domain\Services\Models\Service;
 use App\Services\FilterService\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * App\Domain\ServiceCategories\Models\ServiceCategory
@@ -54,16 +56,24 @@ use Illuminate\Http\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory withTranslation()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\ServiceCategories\Models\ServiceCategory[] $children
+ * @property-read int|null $children_count
+ * @property-read \App\Domain\ServiceCategories\Models\ServiceCategory $parent
+ * @method static bool|null forceDelete()
+ * @method static \Illuminate\Database\Query\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory onlyTrashed()
+ * @method static bool|null restore()
+ * @method static \Illuminate\Database\Query\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory withTrashed()
+ * @method static \Illuminate\Database\Query\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory withoutTrashed()
  */
 class ServiceCategory extends Model
 {
-    use Translatable, Filterable;
+    use Translatable, Filterable , SoftDeletes;
 
     protected $guarded = ['id'];
 
     public $translatedAttributes = ['title', 'short', 'full', 'meta_title', 'meta_keywords', 'meta_description'];
 
-    protected static $imagePath = 'uploads/service_category/';
+    protected static $imagePath = 'uploads/service_categories/';
 
     public function isActive()
     {
@@ -86,7 +96,12 @@ class ServiceCategory extends Model
 
     public function parent()
     {
-        return $this->belongsTo(self::class, 'id', 'parent_id');
+        return $this->belongsTo(self::class, 'parent_id','id');
+    }
+
+    public function services()
+    {
+        return $this->hasMany(Service::class);
     }
 
     public static function getImagePath()

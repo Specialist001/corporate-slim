@@ -67,7 +67,7 @@ class StoreServiceCategoryJob
             }
             if (!empty($translations)) {
                 $serviceCategory->translations()->saveMany($translations);
-                $serviceCategory->slug = TranslitService::makeLatin($serviceCategory->title);
+                $serviceCategory->slug = strtolower(TranslitService::makeLatin($serviceCategory->title));
                 $serviceCategory->save();
             }
             if ($this->request->hasFile('image')) {

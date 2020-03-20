@@ -23,6 +23,11 @@ class CreateServicesTable extends Migration
             $table->string('icon')->nullable()->default(null);
 
             $table->timestamps();
+
+            $table->foreign('service_category_id')
+                ->references('id')
+                ->on('service_categories')
+                ->onDelete('cascade');
         });
     }
 

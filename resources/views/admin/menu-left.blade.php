@@ -30,8 +30,9 @@
             <li>
                 <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-screen-desktop fa-fw"></i> <span class="hide-menu"> Dashboard <span class="label label-rounded label-info pull-right">3</span></span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li> <a href="{{ route('admin.news.index') }}">News</a> </li>
-                    <li> <a href="{{ route('admin.service-categories.index') }}">Service Category</a> </li>
+                    <li> <a href="{{ route('admin.news.index') }}">@lang('admin.titles.all_news')</a> </li>
+                    <li> <a href="{{ route('admin.service-categories.index') }}">@lang('admin.titles.service_categories')</a> </li>
+                    <li> <a href="{{ route('admin.services.index') }}">@lang('admin.titles.services')</a> </li>
                     <li> <a href="index2.html">Clean Version</a> </li>
                     <li> <a href="index3.html">Analytical Version</a> </li>
                 </ul>

@@ -26,7 +26,7 @@ class NewsController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function create()
     {
@@ -37,7 +37,7 @@ class NewsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(NewsRequest $request)
     {
@@ -64,7 +64,7 @@ class NewsController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Domain\News\Models\News  $news
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
     public function edit(News $news)
     {
@@ -78,7 +78,7 @@ class NewsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Domain\News\Models\News  $news
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(NewsRequest $request, News $news)
     {
@@ -96,7 +96,7 @@ class NewsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Domain\News\Models\News  $news
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function destroy(News $news)
     {

@@ -48,7 +48,21 @@ Route::group([
                 Route::put('update/{serviceCategory}', 'ServiceCategoriesController@update')->name('update');
                 Route::delete('destroy/{serviceCategory}', 'ServiceCategoriesController@destroy')->name('destroy');
                 Route::delete('image/{serviceCategory?}', 'ServiceCategoriesController@deleteImage')->name('destroy.image');
-                Route::delete('icon/{serviceCategory?}', 'ServiceCategoryController@deleteIcon')->name('destroy.icon');
+                Route::delete('icon/{serviceCategory?}', 'ServiceCategoriesController@deleteIcon')->name('destroy.icon');
+            });
+
+            Route::group([
+                'prefix' => 'services',
+                'as' => 'services.',
+            ], function () {
+                Route::get('', 'ServicesController@index')->name('index');
+                Route::get('create', 'ServicesController@create')->name('create');
+                Route::post('store', 'ServicesController@store')->name('store');
+                Route::get('edit/{service}', 'ServicesController@edit')->name('edit');
+                Route::put('update/{service}', 'ServicesController@update')->name('update');
+                Route::delete('destroy/{service}', 'ServicesController@destroy')->name('destroy');
+                Route::delete('image/{service?}', 'ServicesController@deleteImage')->name('destroy.image');
+                Route::delete('icon/{service?}', 'ServicesController@deleteIcon')->name('destroy.icon');
             });
         });
 

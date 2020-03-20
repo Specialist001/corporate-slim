@@ -18,7 +18,9 @@ return [
     'enter' => 'Войти',
     'titles' => [
         'all_news' => 'Все новости',
-        'news' => 'Новости'
+        'news' => 'Новости',
+        'service_categories' => 'Категории сервисов',
+        'services' => 'Сервисы',
     ],
     'create' => 'Создать',
     'edit' => 'Изменить',
@@ -29,6 +31,7 @@ return [
     'title' => 'Название',
     'short' => 'Коротко',
     'full' => 'Текст',
+    'description' => 'Текст',
     'type' => 'Тип',
     'image' => 'Рисунок',
     'thumb' => 'Превью',
@@ -41,8 +44,7 @@ return [
     'actions' => 'Действия',
     'destroy_confirm' => 'Вы точно хотите удалить?',
     'back' => 'Назад',
-    'type' => 'Тип',
-    
+
     'flash' => [
         'created' => 'Успешно создан',
         'not_created' => 'Не создан',
@@ -67,5 +69,8 @@ return [
     'to' => '-',
     'from' => 'из',
     'entries' => 'записей',
-    'no_entries' => 'Нет записей'
+    'no_entries' => 'Нет записей',
+    'parent_category' => 'Родительская категория',
+    'icon' => 'Иконка',
+    'category' => 'Категория',
 ];

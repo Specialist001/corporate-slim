@@ -17,7 +17,7 @@ class CreatePageCategoriesTable extends Migration
             $table->bigIncrements('id');
 
             $table->boolean('active')->default(1);
-            $table->integer('order')->default(0);
+            $table->bigInteger('order')->default(0);
             $table->boolean('top')->default(0);
             $table->boolean('bottom')->default(0);
 

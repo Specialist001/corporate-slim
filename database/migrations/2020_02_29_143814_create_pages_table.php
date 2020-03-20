@@ -16,19 +16,24 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->bigIncrements('id');
 
-            $table->integer('page_category_id')->unsigned()->nullable();
+            $table->bigInteger('page_category_id')->unsigned()->nullable();
             $table->string('type')->nullable()->default(null);
             $table->string('image')->nullable();
             $table->string('thumb')->nullable();
 
             $table->boolean('active')->default(1);
-            $table->integer('order')->default(0);
+            $table->bigInteger('order')->default(0);
 
             $table->boolean('top')->default(0);
             $table->boolean('system')->default(0);
 
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('page_category_id')
+                ->references('id')
+                ->on('page_categories')
+                ->onDelete('cascade');
         });
     }
 
