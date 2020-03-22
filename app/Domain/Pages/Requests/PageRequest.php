@@ -1,13 +1,13 @@
 <?php
 
 
-namespace App\Domain\Services\Requests;
+namespace App\Domain\Pages\Requests;
 
 
 use App\Services\TranslationService\TranslationsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ServiceRequest extends FormRequest
+class PageRequest extends FormRequest
 {
     public function authorize()
     {
@@ -17,20 +17,22 @@ class ServiceRequest extends FormRequest
     public function rules()
     {
         return [
-            'service_category_id' => 'required|exists:service_categories,id',
-            'active' => 'nullable|boolean',
-            'order' => 'nullable|integer',
+            'page_category_id' => 'nullable|exists:page_categories,id',
+            'type' => 'nullable|string|max:255',
             'slug' => 'nullable|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,bmp,png',
-            'icon' => 'nullable|image|mimes:jpeg,bmp,png',
+            'active' => 'nullable|boolean',
+            'order' => 'nullable|integer',
+            'top' => 'nullable|boolean',
+            'system' => 'nullable|boolean',
 
             'translations' => ['required', new TranslationsRule()],
             'translations.'.\LaravelLocalization::getDefaultLocale().'.title' => 'required|max:255',
-            'translations.'.\LaravelLocalization::getDefaultLocale().'.description' => 'required|string',
+            'translations.'.\LaravelLocalization::getDefaultLocale().'.full' => 'required|string',
 
             'translations.*.title' => 'max:255',
             'translations.*.short' => 'nullable|string|max:255',
-            'translations.*.description' => 'nullable|string',
+            'translations.*.full' => 'nullable|string',
 
             'translations.*.meta_title' => 'nullable|string|max:255',
             'translations.*.meta_keywords' => 'nullable|string|max:255',

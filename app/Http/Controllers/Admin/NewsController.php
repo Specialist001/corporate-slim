@@ -20,6 +20,7 @@ class NewsController extends Controller
 
         return view('admin.news.index',[
             'news' => $news,
+            'filters' => $filter->filters(),
         ]);
     }
 

@@ -33,6 +33,8 @@
                     <li> <a href="{{ route('admin.news.index') }}">@lang('admin.titles.all_news')</a> </li>
                     <li> <a href="{{ route('admin.service-categories.index') }}">@lang('admin.titles.service_categories')</a> </li>
                     <li> <a href="{{ route('admin.services.index') }}">@lang('admin.titles.services')</a> </li>
+                    <li> <a href="{{ route('admin.page-categories.index') }}">@lang('admin.titles.page_categories')</a> </li>
+                    <li> <a href="{{ route('admin.pages.index') }}">@lang('admin.titles.pages')</a> </li>
                     <li> <a href="index2.html">Clean Version</a> </li>
                     <li> <a href="index3.html">Analytical Version</a> </li>
                 </ul>

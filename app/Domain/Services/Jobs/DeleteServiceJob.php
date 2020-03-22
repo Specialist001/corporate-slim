@@ -11,15 +11,18 @@ class DeleteServiceJob
 {
     use Queueable, Dispatchable;
 
-    public $service;
+    private $service;
 
+    /**
+     * DeleteServiceJob constructor.
+     * @param Service $service
+     */
     public function __construct(Service $service)
     {
         $this->service = $service;
     }
 
     /**
-     * @return Service
      * @throws \Exception
      */
     public function handle()

@@ -38,7 +38,7 @@
                                     @endif
                                 </td>
                                 <td>
-                                    <img src="{{ $item->iconUrl() }}" class="img-thumbnail" style="width:100px">
+                                    <img src="{{ $item->iconUrl() }}" class="img-thumbnail" style="width:50px">
                                 </td>
                                 <td>{{ $item->order }}</td>
                                 <td>

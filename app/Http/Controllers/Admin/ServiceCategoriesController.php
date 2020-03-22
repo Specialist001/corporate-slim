@@ -11,7 +11,6 @@ use App\Domain\ServiceCategories\Jobs\UpdateServiceCategoryJob;
 use App\Domain\ServiceCategories\Models\ServiceCategory;
 use App\Domain\ServiceCategories\Requests\ServiceCategoryRequest;
 use App\Http\Controllers\Controller;
-use App\Helpers\ServiceCategoryHelper;
 use Illuminate\Http\Request;
 
 class ServiceCategoriesController extends Controller
@@ -23,6 +22,7 @@ class ServiceCategoriesController extends Controller
 
         return view('admin.service-categories.index', [
             'serviceCategories' => $serviceCategories,
+            'filters' => $filter->filters(),
         ]);
     }
 
@@ -67,7 +67,7 @@ class ServiceCategoriesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Domain\ServiceCategories\Models\ServiceCategory  $serviceCategory
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function update(ServiceCategoryRequest $request, ServiceCategory $serviceCategory)
     {

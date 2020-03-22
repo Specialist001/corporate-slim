@@ -21,6 +21,8 @@ return [
         'news' => 'Новости',
         'service_categories' => 'Категории сервисов',
         'services' => 'Сервисы',
+        'page_categories' => 'Категории страниц',
+        'pages' => 'Страницы',
     ],
     'create' => 'Создать',
     'edit' => 'Изменить',
@@ -44,6 +46,8 @@ return [
     'actions' => 'Действия',
     'destroy_confirm' => 'Вы точно хотите удалить?',
     'back' => 'Назад',
+    'filters' => 'Фильтры',
+    'system' => 'Системный',
 
     'flash' => [
         'created' => 'Успешно создан',
@@ -65,6 +69,11 @@ return [
         'meta_description' => 'Мета-описание',
     ],
 
+    'bool_statuses' => [
+        1 => 'Активный',
+        0 => 'Не активный',
+    ],
+
     'showing' => 'Показано ',
     'to' => '-',
     'from' => 'из',
@@ -73,4 +82,9 @@ return [
     'parent_category' => 'Родительская категория',
     'icon' => 'Иконка',
     'category' => 'Категория',
+    'filters_apply' => 'Принять фильтр',
+    'filters_reset' => 'Сбросить фильтр',
+
+    'top' => 'Шапке',
+    'bottom' => 'Подвале',
 ];

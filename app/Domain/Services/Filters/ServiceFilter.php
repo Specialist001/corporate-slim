@@ -14,13 +14,14 @@ class ServiceFilter extends Filter
         'service_category_id',
         'active',
         'title',
+        'created_at',
         'sort', 'perPage'
     ];
 
     protected $translationTable = 'service_translations';
 
     protected $defaults = [
-        'sort' => '-id'
+        'sort' => '-created_at'
     ];
 
     public function __construct(Request $request)
@@ -33,6 +34,7 @@ class ServiceFilter extends Filter
         $this->addSortable('id');
         $this->addSortable('service_category_id');
         $this->addSortable('active');
+        $this->addSortable('created_at');
         $this->addSortable('title', $this->translationTable);
 
         $this->addJoin($this->translationTable, function () {

@@ -18,6 +18,7 @@ class CreatePagesTable extends Migration
 
             $table->bigInteger('page_category_id')->unsigned()->nullable();
             $table->string('type')->nullable()->default(null);
+            $table->string('slug')->nullable();
             $table->string('image')->nullable();
             $table->string('thumb')->nullable();
 

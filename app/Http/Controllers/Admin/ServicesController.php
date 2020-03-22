@@ -21,6 +21,7 @@ class ServicesController extends Controller
 
         return view('admin.services.index', [
             'services' => $services,
+            'filters' => $filter->filters(),
         ]);
     }
 

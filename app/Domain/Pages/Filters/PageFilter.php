@@ -1,24 +1,27 @@
 <?php
 
 
-namespace App\Domain\ServiceCategories\Filters;
+namespace App\Domain\Pages\Filters;
 
 
 use App\Services\FilterService\Filter;
 use Illuminate\Http\Request;
 
-class ServiceCategoryFilter extends Filter
+class PageFilter extends Filter
 {
     protected $available = [
         'id',
+        'page_category_id',
         'type',
-        'title',
         'active',
+        'top',
+        'system',
+        'title',
         'created_at',
         'sort', 'perPage'
     ];
 
-    protected $translationTable = 'service_category_translations';
+    protected $translationTable = 'page_translation';
 
     protected $defaults = [
         'sort' => '-created_at'
@@ -29,19 +32,23 @@ class ServiceCategoryFilter extends Filter
         $this->input = $this->prepareInput($request->all());
     }
 
-    protected function init()
+    public function init()
     {
         $this->addSortable('id');
-        $this->addSortable('title', $this->translationTable);
+        $this->addSortable('page_category_id');
+        $this->addSortable('type');
         $this->addSortable('active');
+        $this->addSortable('top');
+        $this->addSortable('system');
         $this->addSortable('created_at');
+        $this->addSortable('title', $this->translationTable);
 
         $this->addJoin($this->translationTable, function () {
             $this->builder->leftJoin($this->translationTable, function ($join) {
                 /**
                  * @var $join \Illuminate\Database\Query\JoinClause
                  */
-                $join->on($this->table . '.id', $this->translationTable . '.service_category_id')->where('locale', \App::getLocale());
+                $join->on($this->table . '.id', $this->translationTable . '.service_id')->where('locale', \App::getLocale());
             })->select($this->table . '.*');
         });
     }
@@ -49,6 +56,11 @@ class ServiceCategoryFilter extends Filter
     public function id($value)
     {
         return $this->builder->where($this->column('id'), $value);
+    }
+
+    public function pageCategoryId($value)
+    {
+        return $this->builder->where($this->column('page_category_id'), $value);
     }
 
     public function type($value)
@@ -59,6 +71,16 @@ class ServiceCategoryFilter extends Filter
     public function active($value)
     {
         return $this->builder->where($this->column('active'), $value);
+    }
+
+    public function top($value)
+    {
+        return $this->builder->where($this->column('top'), $value);
+    }
+
+    public function system($value)
+    {
+        return $this->builder->where($this->column('system'), $value);
     }
 
     public function title($value)

@@ -62,7 +62,7 @@ class StoreServiceJob
                     }
                     $translate['short'] = str_replace('&nbsp;', '', $translate['short']);
                 }
-                $translations[] = new serviceTranslation($translate);
+                $translations[] = new ServiceTranslation($translate);
             }
             if (!empty($translations)) {
                 $service->translations()->saveMany($translations);

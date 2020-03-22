@@ -11,6 +11,11 @@ return [
         'height' => 800,
         'default' => 'uploads/defaults/news.png',
     ],
+    'news_thumb' => [
+        'width' => 500,
+        'height' => 250,
+        'default' => 'uploads/defaults/news_thumb.png',
+    ],
     'service_category_image' => [
         'width' => 1200,
         'height' => 600,
@@ -31,11 +36,6 @@ return [
         'height' => 200,
         'default' => 'uploads/defaults/service_icon.png',
     ],
-    'news_thumb' => [
-        'width' => 500,
-        'height' => 250,
-        'default' => 'uploads/defaults/news_thumb.png',
-    ],
     'projectLogo' => [
         'width' => 300,
         'height' => 300,
@@ -45,6 +45,16 @@ return [
         'width' => 780,
         'height' => 312,
         'default' => 'uploads/defaults/image.png',
+    ],
+    'page_image' => [
+        'width' => 1600,
+        'height' => 800,
+        'default' => 'uploads/defaults/page.png',
+    ],
+    'page_thumb' => [
+        'width' => 500,
+        'height' => 250,
+        'default' => 'uploads/defaults/page.png',
     ],
     'sites' => [
         'width' => 150,

@@ -12,7 +12,7 @@
     @if(count($category->children) > 0)
         @include('admin.services._categories',[
         	'categories' => $category->children,
-        	'delimiter' => '-'.$delimiter,
+        	'delimiter' => '&bull;'.$delimiter,
     	])
     @endif
 @endforeach

@@ -64,9 +64,14 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static bool|null restore()
  * @method static \Illuminate\Database\Query\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Domain\ServiceCategories\Models\ServiceCategory withoutTrashed()
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Services\Models\Service[] $services
+ * @property-read int|null $services_count
  */
 class ServiceCategory extends Model
 {
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
     use Translatable, Filterable , SoftDeletes;
 
     protected $guarded = ['id'];
@@ -78,6 +83,14 @@ class ServiceCategory extends Model
     public function isActive()
     {
         return $this->active === 1;
+    }
+
+    public static function statuses()
+    {
+        return [
+            static::STATUS_ACTIVE,
+            static::STATUS_INACTIVE,
+        ];
     }
 
     /**

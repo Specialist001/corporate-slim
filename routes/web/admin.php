@@ -64,6 +64,31 @@ Route::group([
                 Route::delete('image/{service?}', 'ServicesController@deleteImage')->name('destroy.image');
                 Route::delete('icon/{service?}', 'ServicesController@deleteIcon')->name('destroy.icon');
             });
+
+            Route::group([
+                'prefix' => 'page-categories',
+                'as' => 'page-categories.',
+            ], function () {
+                Route::get('', 'PageCategoriesController@index')->name('index');
+                Route::get('create', 'PageCategoriesController@create')->name('create');
+                Route::post('store', 'PageCategoriesController@store')->name('store');
+                Route::get('edit/{pageCategory}', 'PageCategoriesController@edit')->name('edit');
+                Route::put('update/{pageCategory}', 'PageCategoriesController@update')->name('update');
+                Route::delete('destroy/{pageCategory}', 'PageCategoriesController@destroy')->name('destroy');
+            });
+
+            Route::group([
+                'prefix' => 'pages',
+                'as' => 'pages.',
+            ], function () {
+                Route::get('', 'PagesController@index')->name('index');
+                Route::get('create', 'PagesController@create')->name('create');
+                Route::post('store', 'PagesController@store')->name('store');
+                Route::get('edit/{page}', 'PagesController@edit')->name('edit');
+                Route::put('update/{page}', 'PagesController@update')->name('update');
+                Route::delete('destroy/{page}', 'PagesController@destroy')->name('destroy');
+                Route::delete('image/{page?}', 'PagesController@deleteImage')->name('destroy.image');
+            });
         });
 
         //Route::get('', 'HomeController@index')->name('home');

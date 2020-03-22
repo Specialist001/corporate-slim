@@ -22,7 +22,6 @@ class DeleteServiceCategoryJob
     }
 
     /**
-     * @return ServiceCategory
      * @throws \Exception
      */
     public function handle()
