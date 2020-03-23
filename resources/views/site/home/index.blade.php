@@ -44,36 +44,18 @@
     <div class="service_area" id="service_area">
         <div class="container">
             <div class="row">
+                @foreach($serviceCategories as $serviceCategory)
                 <div class="col-xl-4 col-md-4">
                     <div class="single_service text-center">
                         <div class="icon">
-                            <img src="{{ asset('images/svg_icon/seo_1.svg') }}" alt="">
+                            <img src="{{ $serviceCategory->iconUrl() }}" alt="" class="w-100">
                         </div>
-                        <h3>SEO/SEM</h3>
-                        <p>Esteem spirit temper too say adieus who direct esteem. It esteems luckily or picture placing drawing.</p>
-                        <a href="#" class="boxed-btn3-text">Learn More</a>
+                        <h3>{{ $serviceCategory->title }}</h3>
+                        <p>{{ $serviceCategory->short }}</p>
+                        <a href="{{ route('site.services.show', $serviceCategory->slug) }}" class="boxed-btn3-text">Learn More</a>
                     </div>
                 </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_service text-center">
-                        <div class="icon">
-                            <img src="{{ asset('images/svg_icon/seo_2.svg') }}" alt="">
-                        </div>
-                        <h3>Digital Marketing</h3>
-                        <p>Esteem spirit temper too say adieus who direct esteem. It esteems luckily or picture placing drawing.</p>
-                        <a href="#" class="boxed-btn3-text">Learn More</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-4">
-                    <div class="single_service text-center">
-                        <div class="icon">
-                            <img src="{{ asset('images/svg_icon/seo_3.svg') }}" alt="">
-                        </div>
-                        <h3>Social Media</h3>
-                        <p>Esteem spirit temper too say adieus who direct esteem. It esteems luckily or picture placing drawing.</p>
-                        <a href="#" class="boxed-btn3-text">Learn More</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
 
         </div>
@@ -105,7 +87,7 @@
     <!--/ compapy_info  -->
 
     <!-- case_study_area  -->
-    <div class="case_study_area case_bg_1">
+    <div class="case_study_area case_bg_1" id="case_study_area">
         <div class="patrn_1 d-none d-lg-block">
             <img src="{{ asset('images/pattern/patrn_1.png') }}" alt="">
         </div>

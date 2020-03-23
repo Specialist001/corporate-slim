@@ -71,8 +71,6 @@ class ServiceCategoriesController extends Controller
      */
     public function update(ServiceCategoryRequest $request, ServiceCategory $serviceCategory)
     {
-        // dd($request->input());
-        // dd($this->dispatchNow(new UpdateNewsJob($request, $news)));
         try {
             $this->dispatchNow(new UpdateServiceCategoryJob($request, $serviceCategory));
             return redirect()->route('admin.service-categories.index')->with('success', trans('admin.flash.edited'));

@@ -22,8 +22,8 @@
                                     </ul>
                                 </li>
                                 <li><a href="services.html">Services</a></li>
-                                <li><a href="#service_area">Services 1</a></li>
-                                <li><a href="Case_Study.html">Case Study</a></li>
+{{--                                <li><a href="#service_area">Services 1</a></li>--}}
+                                <li><a href="#case_study_area">Case Study</a></li>
                                 <li><a href="#">blog <i class="ti-angle-down"></i></a>
                                     <ul class="submenu">
                                         <li><a href="blog.html">blog</a></li>

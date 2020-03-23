@@ -47,11 +47,11 @@
         <input type="file" name="image" class="form-control" id="image" >
         {!! $errors->first('image', '<small class="form-control-feedback">:message</small>') !!}
     </div>
-    <div class="col-md-2 form-group {!! $errors->first('icon', 'has-danger')!!}">
+    <div class="col-md-4 form-group {!! $errors->first('icon', 'has-danger')!!}">
         <label class="" for="icon">@lang('admin.icon')</label>
         @if(isset($serviceCategory) && $serviceCategory->icon)
-            <p id="thumb">
-                <img src="{{$serviceCategory->thumbUrl()}}" alt="{{$serviceCategory->icon}}" class="img-thumbnail d-block">
+            <p id="icon" style="width: 30%">
+                <img src="{{$serviceCategory->iconUrl()}}" alt="{{$serviceCategory->icon}}" class="img-thumbnail d-block">
                 <small id="delete_icon" class="text-danger cur-pointer"><i class="icmn-cross"></i> @lang('admin.destroy')</small>
             </p>
         @endif

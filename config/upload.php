@@ -27,8 +27,8 @@ return [
         'default' => 'uploads/defaults/service_category_icon.png',
     ],
     'service_image' => [
-        'width' => 1200,
-        'height' => 600,
+        'width' => 600,
+        'height' => 400,
         'default' => 'uploads/defaults/service.png',
     ],
     'service_icon' => [

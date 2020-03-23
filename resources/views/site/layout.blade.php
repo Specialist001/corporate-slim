@@ -32,7 +32,6 @@
     @stack('styles')
 </head>
 <body>
-
     <header id="header">
         @yield('header')
     </header>
@@ -42,7 +41,6 @@
     <footer class="footer">
         @yield('footer')
     </footer>
-
     <script type="text/javascript" src="{{ asset('vendor/modernizr/js/modernizr-3.5.0.min.js') }}"></script>
 {{--    <script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery-3.4.1.min.js') }}"></script>--}}
     <script type="text/javascript" src="{{ asset('vendor/jquery/js/jquery.min.js') }}"></script>
