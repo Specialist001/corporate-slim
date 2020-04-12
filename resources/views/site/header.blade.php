@@ -2,23 +2,25 @@
     <div id="sticky-header" class="main-header-area">
         <div class="container-fluid">
             <div class="row align-items-center">
-                <div class="col-xl-3 col-lg-2">
-                    <div class="logo">
-                        <a href="index.html">
-                            <img src="{{ asset('images/logo.png') }}" alt="">
+                <div class="col-xl-2 col-lg-2">
+                    <div class="logo d-inline-block w-50">
+                        <a href="{{ route('site.home') }}">
+                            <img src="{{ asset('images/logo_tm.png') }}" alt="" class="img-fluid">
                         </a>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-7">
+                <div class="col-xl-7 col-lg-7">
                     <div class="main-menu  d-none d-lg-block">
                         <nav>
                             <ul id="navigation">
-                                <li><a href="#">home</a></li>
-                                <li><a href="#">pages <i class="ti-angle-down"></i></a>
+                                <li><a href="{{ route('site.home') }}">@lang('common.titles.main')</a></li>
+                                <li><a href="{{ route('site.news.index') }}">@lang('common.titles.news')</a></li>
+                                <li><a href="#">@lang('common.titles.services') <i class="ti-angle-down"></i></a>
                                     <ul class="submenu">
-                                        <li><a href="Case_details.html">Case  details</a></li>
-                                        <li><a href="about.html">about</a></li>
-                                        <li><a href="elements.html">elements</a></li>
+                                        @foreach($serviceCategories as $serviceCategory)
+                                        <li><a href="{{ route('site.services.show', $serviceCategory->slug) }}">{{ $serviceCategory->title }}</a></li>
+
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li><a href="services.html">Services</a></li>
@@ -35,8 +37,34 @@
                         </nav>
                     </div>
                 </div>
-                <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                    <div class="Appointment">
+                <div class="col-xl-3 col-lg-3 main-menu d-none d-lg-block">
+                    <nav class="d-inline-block">
+                        <ul id="navigation">
+                            <li>
+                                <a href="#">
+                                    <img src="{{ asset('images/lang/flag-'.LaravelLocalization::getCurrentLocale().'.png') }}"
+                                        alt="{{LaravelLocalization::getCurrentLocale()}}"
+                                        class="align-middle" >
+                                    <span class="" style="text-transform: uppercase">{{LaravelLocalization::getCurrentLocale()=='ru' ? 'РУ' : LaravelLocalization::getCurrentLocale()}}</span>
+                                    <i class="ti-angle-down"></i>
+                                </a>
+                                <ul class="submenu" style="width: 110px; right: -18px; left: inherit">
+                                    @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                                        @if($localeCode != LaravelLocalization::getCurrentLocale())
+                                    <li>
+                                        <a href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                                            <img src="{{ asset('images/lang/flag-'.$localeCode.'.png') }}"
+                                                 alt="{{$localeCode}}" class="align-middle">
+                                            <span class="" style="text-transform: uppercase">{{ $localeCode == 'ru' ? 'РУ' : $localeCode }}</span>
+                                        </a>
+                                    </li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div class="Appointment d-inline-block">
                         <div class="book_btn d-none d-lg-block">
                             <a  href="#"> <i class="fa fa-phone"></i> +10 673 567 367</a>
                         </div>

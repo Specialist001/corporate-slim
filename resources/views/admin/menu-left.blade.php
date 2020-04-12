@@ -30,11 +30,11 @@
             <li>
                 <a class="active waves-effect" href="javascript:void(0);" aria-expanded="false"><i class="icon-screen-desktop fa-fw"></i> <span class="hide-menu"> Dashboard <span class="label label-rounded label-info pull-right">3</span></span></a>
                 <ul aria-expanded="false" class="collapse">
-                    <li> <a href="{{ route('admin.news.index') }}">@lang('admin.titles.all_news')</a> </li>
-                    <li> <a href="{{ route('admin.service-categories.index') }}">@lang('admin.titles.service_categories')</a> </li>
-                    <li> <a href="{{ route('admin.services.index') }}">@lang('admin.titles.services')</a> </li>
-                    <li> <a href="{{ route('admin.page-categories.index') }}">@lang('admin.titles.page_categories')</a> </li>
-                    <li> <a href="{{ route('admin.pages.index') }}">@lang('admin.titles.pages')</a> </li>
+                    <li> <a href="{{ route('admin.news.index') }}">@lang('common.titles.all_news')</a> </li>
+                    <li> <a href="{{ route('admin.service-categories.index') }}">@lang('common.titles.service_categories')</a> </li>
+                    <li> <a href="{{ route('admin.services.index') }}">@lang('common.titles.services')</a> </li>
+                    <li> <a href="{{ route('admin.page-categories.index') }}">@lang('common.titles.page_categories')</a> </li>
+                    <li> <a href="{{ route('admin.pages.index') }}">@lang('common.titles.pages')</a> </li>
                     <li> <a href="index2.html">Clean Version</a> </li>
                     <li> <a href="index3.html">Analytical Version</a> </li>
                 </ul>

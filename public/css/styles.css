@@ -10,3 +10,11 @@ html {
     background: #e31e24; /* Gecko Browsers */
     color: #fff;
 }
+
+.post_item__img {
+    width: 30%;
+}
+
+.align-middle {
+    width: 30px;
+}

@@ -44,9 +44,10 @@ use Illuminate\Http\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News whereViews($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News withTranslation()
  * @mixin \Eloquent
- * @property string|null $image
- * @property string|null $thumb
+ * @property string $image
+ * @property string $thumb
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News actives()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News inActives()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News news()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News promotion()
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\News\Models\News whereImage($value)
@@ -87,6 +88,15 @@ class News extends Model
     public function scopeActives($query)
     {
         return $query->where('active', 1);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeInActives($query)
+    {
+        return $query->where('active', 0);
     }
 
     public function isNews()

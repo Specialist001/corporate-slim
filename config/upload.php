@@ -7,13 +7,13 @@ return [
         'default' => 'uploads/defaults/category.png',
     ],
     'news_image' => [
-        'width' => 1600,
-        'height' => 800,
+        'width' => 800,
+        'height' => 400,
         'default' => 'uploads/defaults/news.png',
     ],
     'news_thumb' => [
-        'width' => 500,
-        'height' => 250,
+        'width' => 200,
+        'height' => 200,
         'default' => 'uploads/defaults/news_thumb.png',
     ],
     'service_category_image' => [

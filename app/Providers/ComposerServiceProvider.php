@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Domain\ServiceCategories\Models\ServiceCategory;
 use Illuminate\Support\ServiceProvider;
 
 class ComposerServiceProvider extends ServiceProvider
@@ -24,5 +25,25 @@ class ComposerServiceProvider extends ServiceProvider
              */
             $view->with('current_route_name', $current_route_name);
         });
+
+        view()->composer(['site.header'], function ($view) {
+            $serviceCategories = ServiceCategory::withTranslation()
+                ->orderBy('order')->limit(5)->get();
+
+            /**
+             * @var $view \Illuminate\View\View|\Illuminate\Contracts\View\Factory
+             */
+            $view->with('serviceCategories', $serviceCategories);
+        });
+    }
+
+    /**
+     * Register services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        //
     }
 }
