@@ -73,6 +73,8 @@
     @stack('scripts')
 
     <script type="text/javascript" src="{{ asset('js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/axios/axios.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('vendor/vue/vue.js') }}"></script>
     <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

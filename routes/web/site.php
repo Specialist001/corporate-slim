@@ -15,6 +15,9 @@ Route::group([
         'prefix' => 'news',
         'as' => 'news.',
     ], function () {
+        Route::get('/skills', function() {
+            return ['lara1', 'lara2', 'lara3', 'lara4'];
+        });
         Route::get('', 'NewsController@index')->name('index');
         Route::get('{slug}', 'NewsController@show')->name('show');
 //        Route::get('create', 'NewsController@create')->name('create');

@@ -26,6 +26,11 @@
             </div>
         </div>
     </div>
+    <div id="app">
+        <ul>
+            <li v-for="skill in skills" v-text="skill"></li>
+        </ul>
+    </div>
     <!-- /bradcam_area  -->
 
     <!--================Blog Area =================-->
