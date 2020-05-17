@@ -74,6 +74,11 @@ class NewsController extends Controller
         ]);
     }
 
+    public function apiEdit(News $news)
+    {
+        return $news;
+    }
+
     /**
      * Update the specified resource in storage.
      *

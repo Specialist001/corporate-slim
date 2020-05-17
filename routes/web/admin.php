@@ -23,6 +23,18 @@ Route::group([
             'middleware' => ['role:admin,manager']
         ], function () {
             Route::get('/', 'HomeController@index')->name('home');
+            
+            Route::group([
+                'prefix' => 'spa',
+                'as' => 'spa.',
+            ], function () {
+                Route::get('', 'SpaController@index')->name('index');                
+                // Route::post('store', 'NewsController@store')->name('store');
+                // Route::get('edit/{news}', 'NewsController@edit')->name('edit');
+                // Route::put('update/{news}', 'NewsController@update')->name('update');
+                // Route::delete('destroy/{news}', 'NewsController@destroy')->name('destroy');
+                // Route::delete('image/{news?}', 'NewsController@deleteImage')->name('destroy.image');
+            });
 
             Route::group([
                 'prefix' => 'news',
@@ -32,6 +44,7 @@ Route::group([
                 Route::get('create', 'NewsController@create')->name('create');
                 Route::post('store', 'NewsController@store')->name('store');
                 Route::get('edit/{news}', 'NewsController@edit')->name('edit');
+                Route::get('edit-api/{news}', 'NewsController@apiEdit')->name('edit.api');
                 Route::put('update/{news}', 'NewsController@update')->name('update');
                 Route::delete('destroy/{news}', 'NewsController@destroy')->name('destroy');
                 Route::delete('image/{news?}', 'NewsController@deleteImage')->name('destroy.image');
