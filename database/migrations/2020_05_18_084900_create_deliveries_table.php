@@ -18,7 +18,11 @@ class CreateDeliveriesTable extends Migration
             $table->string('name');
             $table->bigInteger('price')->nullable()->default(null);
             $table->boolean('active')->default(1);
-            $table->string('schedule')->nullable()->default(null);
+            $table->text('emails')->nullable();
+            $table->text('phones')->nullable();
+
+            $table->string('location_lat')->nullable()->default(null);
+            $table->string('location_lng')->nullable()->default(null);
 
             $table->timestamps();
         });

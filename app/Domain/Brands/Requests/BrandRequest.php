@@ -13,7 +13,7 @@ class BrandRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,11 @@ class BrandRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'logo' => 'nullable|image|mimes:jpeg,bmp,png',
+            'order' => 'nullable|integer|min:0',
+            'active' => 'nullable|boolean',
+            'on_main' => 'nullable|boolean'
         ];
     }
 }

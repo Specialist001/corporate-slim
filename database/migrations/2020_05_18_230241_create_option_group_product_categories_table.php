@@ -40,9 +40,6 @@ class CreateOptionGroupProductCategoriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('option_group_product_categories', function (Blueprint $table) {
-            $table->dropUnique('option_group_product_categories_unique');
-        });
         Schema::dropIfExists('option_group_product_categories');
     }
 }

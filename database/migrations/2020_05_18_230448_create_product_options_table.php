@@ -44,9 +44,6 @@ class CreateProductOptionsTable extends Migration
      */
     public function down()
     {
-        Schema::table('product_options', function (Blueprint $table) {
-            $table->dropUnique('product_options_unique');
-        });
         Schema::dropIfExists('product_options');
     }
 }

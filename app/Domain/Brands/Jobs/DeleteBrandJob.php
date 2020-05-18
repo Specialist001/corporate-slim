@@ -7,28 +7,40 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use App\Domain\Models\Brand;
 
 class DeleteBrandJob implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * Create a new job instance.
-     *
-     * @return void
+     * @var Brand
      */
-    public function __construct()
+    protected $brand;
+
+    /**
+     * DeleteBrandJob constructor.
+     * @param Brand $brand
+     */
+    public function __construct(Brand $brand)
     {
-        //
+        $this->brand = $brand;
     }
 
     /**
      * Execute the job.
      *
-     * @return void
+     * @throws \Exception
      */
     public function handle()
     {
-        //
+        \DB::beginTransaction();
+        try {
+            $this->brand->delete();
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            throw $exception;
+        }
+        \DB::commit();
     }
 }

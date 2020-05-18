@@ -24,7 +24,14 @@ class DeliveryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'name' => 'required|string|max:255',
+            'price' => 'nullable|integer|min:0',
+            'schedule' => 'nullable|text',
+            'active' => 'nullable|boolean',
+            'emails' => 'nullable|text',
+            'phones' => 'nullable|text',
+            'location_lat' => 'required|string|max:255',
+            'location_lng' => 'required|string|max:255',
         ];
     }
 }
