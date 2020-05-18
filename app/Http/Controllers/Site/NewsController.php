@@ -15,7 +15,7 @@ class NewsController extends Controller
             ->orderBy('created_at', 'desc');
 
         $lastNews = $news->limit(4)->get();
-        $news = $news->paginate(2, '*', 'page');
+        $news = $news->paginate(6, '*', 'page');
 
         return view('site.news.index', [
             'news' => $news,

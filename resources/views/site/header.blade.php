@@ -3,9 +3,9 @@
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col-xl-2 col-lg-2">
-                    <div class="logo d-inline-block w-50">
+                    <div class="logo header__logo d-inline-block w-25 ml-4">
                         <a href="{{ route('site.home') }}">
-                            <img src="{{ asset('images/logo_tm.png') }}" alt="" class="img-fluid">
+                            <img src="{{ asset('images/cs_logo.png') }}" alt="" class="img-fluid">
                         </a>
                     </div>
                 </div>
