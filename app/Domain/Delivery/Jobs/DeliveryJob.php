@@ -27,7 +27,8 @@ class DeliveryJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param DeliveryRequest $request
+     * @param Delivery|null $delivery
      */
     public function __construct(DeliveryRequest $request, Delivery $delivery = null)
     {
@@ -38,7 +39,8 @@ class DeliveryJob implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @return Delivery
+     * @throws \Exception
      */
     public function handle()
     {
@@ -65,7 +67,7 @@ class DeliveryJob implements ShouldQueue
             // $delivery->schedule = json_encode(array_filter(['days' => $days, 'time' => $time, 'alltime' => $alltime]));
 
             $delivery->save();
-        } cartch (\Exception $exception) {
+        } catch (\Exception $exception) {
             \DB::rollback();
             throw $exception;
         }

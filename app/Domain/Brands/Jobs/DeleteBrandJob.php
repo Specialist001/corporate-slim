@@ -2,12 +2,12 @@
 
 namespace App\Domain\Brands\Jobs;
 
+use App\Domain\Brands\Models\Brand;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Domain\Models\Brand;
 
 class DeleteBrandJob implements ShouldQueue
 {

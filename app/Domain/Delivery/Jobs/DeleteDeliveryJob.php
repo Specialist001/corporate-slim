@@ -2,6 +2,7 @@
 
 namespace App\Domain\Delivery\Jobs;
 
+use Exception as ExceptionAlias;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -21,7 +22,7 @@ class DeleteDeliveryJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param Delivery $delivery
      */
     public function __construct(Delivery $delivery)
     {
@@ -32,13 +33,14 @@ class DeleteDeliveryJob implements ShouldQueue
      * Execute the job.
      *
      * @return void
+     * @throws ExceptionAlias
      */
     public function handle()
     {
         \DB::beginTransaction();
         try {
             $this->delivery->delete();
-        } catch (\Exception $exception) {
+        } catch (ExceptionAlias $exception) {
             \DB::rollBack();
             throw $exception;
         }

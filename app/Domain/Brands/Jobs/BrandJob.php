@@ -7,8 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Domain\Models\Brand;
-use App\Domain\Requests\BrandRequest;
+use App\Domain\Brands\Models\Brand;
+use App\Domain\Brands\Requests\BrandRequest;
 
 class BrandJob implements ShouldQueue
 {
@@ -27,7 +27,8 @@ class BrandJob implements ShouldQueue
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param BrandRequest $request
+     * @param Brand|null $brand
      */
     public function __construct(BrandRequest $request, Brand $brand = null)
     {
