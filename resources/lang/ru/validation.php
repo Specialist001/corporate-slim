@@ -14,6 +14,7 @@ return [
     */
 
     'accepted' => 'Вы должны принять :attribute.',
+    'required' => 'Вы должны заполнять поле :attribute.',
 
     'attributes' => [
         'id' => 'ID',
@@ -84,5 +85,8 @@ return [
         'slug' => 'URI',
         'token' => 'Токен',
         'fcm_token' => 'FCM токен',
+
+        'type' => 'Тип',
+        'option_group' => 'Группа опции',
     ],
 ];

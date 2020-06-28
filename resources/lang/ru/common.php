@@ -22,6 +22,9 @@ return [
         'services' => 'Сервисы',
         'page_categories' => 'Категории страниц',
         'pages' => 'Страницы',
+        'option_group' => 'Группа опции',
+        'option_groups' => 'Группы опции',
+        'options' => 'Опции',
     ],
 
     'next' => 'Сдедующая',

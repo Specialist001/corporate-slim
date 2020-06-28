@@ -17,7 +17,7 @@ class CreateOptionsTable extends Migration
             $table->bigIncrements('id');
 
             $table->bigInteger('option_group_id')->unsigned();
-            $table->bigInteger('order')->unsigned();
+            $table->bigInteger('order')->unsigned()->nullable();
             $table->string('type')->nullable()->default(null);
             $table->timestamps();
 

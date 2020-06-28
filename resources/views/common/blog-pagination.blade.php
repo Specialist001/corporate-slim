@@ -9,7 +9,7 @@
             </div>
         </div>
         <div class="col-md-12 ">
-            {{$data->links('vendor.pagination.default')}}
+            {{$data->onEachSide(1)->links('vendor.pagination.default')}}
         </div>
     </div>
 @else

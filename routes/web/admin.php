@@ -89,6 +89,30 @@ Route::group([
                 Route::delete('destroy/{page}', 'PagesController@destroy')->name('destroy');
                 Route::delete('image/{page?}', 'PagesController@deleteImage')->name('destroy.image');
             });
+
+            Route::group([
+                'prefix' => 'option-groups',
+                'as' => 'option-groups.',
+            ], function () {
+                Route::get('', 'OptionGroupsController@index')->name('index');
+                Route::get('create', 'OptionGroupsController@create')->name('create');
+                Route::post('store', 'OptionGroupsController@store')->name('store');
+                Route::get('edit/{optionGroup}', 'OptionGroupsController@edit')->name('edit');
+                Route::put('update/{optionGroup}', 'OptionGroupsController@update')->name('update');
+                Route::delete('destroy/{optionGroup}', 'OptionGroupsController@destroy')->name('destroy');
+            });
+
+            Route::group([
+                'prefix' => 'options',
+                'as' => 'options.',
+            ], function () {
+                Route::get('', 'OptionsController@index')->name('index');
+                Route::get('create', 'OptionsController@create')->name('create');
+                Route::post('store', 'OptionsController@store')->name('store');
+                Route::get('edit/{option}', 'OptionsController@edit')->name('edit');
+                Route::put('update/{option}', 'OptionsController@update')->name('update');
+                Route::delete('destroy/{option}', 'OptionsController@destroy')->name('destroy');
+            });
         });
 
         //Route::get('', 'HomeController@index')->name('home');

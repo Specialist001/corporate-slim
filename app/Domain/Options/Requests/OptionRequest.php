@@ -2,6 +2,7 @@
 
 namespace App\Domain\Options\Requests;
 
+use App\Services\TranslationService\TranslationsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class OptionRequest extends FormRequest
@@ -13,7 +14,7 @@ class OptionRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,14 @@ class OptionRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'option_group_id' => 'required|exists:option_groups,id',
+            'type' => 'required|string|max:255',
+            'order' => 'nullable|integer',
+
+            'translations' => ['required', new TranslationsRule()],
+            'translations.'.\LaravelLocalization::getDefaultLocale().'.name' => 'required|max:255',
+
+            'translations.*.name' => 'max:255',
         ];
     }
 }
