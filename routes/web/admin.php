@@ -112,6 +112,10 @@ Route::group([
                 Route::get('edit/{option}', 'OptionsController@edit')->name('edit');
                 Route::put('update/{option}', 'OptionsController@update')->name('update');
                 Route::delete('destroy/{option}', 'OptionsController@destroy')->name('destroy');
+
+                Route::get('getOptionValue/{optionValue}', 'OptionsController@getOptionValue')->name('getOptionValue');
+                Route::post('setOptionValue', 'OptionsController@setOptionValue')->name('setOptionValue');
+                Route::post('putOptionValue', 'OptionsController@putOptionValue')->name('putOptionValue');
             });
         });
 

@@ -9,6 +9,7 @@ use App\Domain\Options\Jobs\StoreOptionJob;
 use App\Domain\Options\Jobs\UpdateOptionJob;
 use App\Domain\Options\Models\Option;
 use App\Domain\Options\Requests\OptionRequest;
+use App\Domain\OptionValues\Models\OptionValue;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -129,5 +130,25 @@ class OptionsController extends Controller
         } catch (\Exception $exception) {
             return redirect()->route('admin.options.index')->with('error', trans('admin.flash.not_destroyed'));
         }
+    }
+
+    public function getOptionValue(OptionValue $optionValue)
+    {
+        return view('component.translations', [
+            'form' => 'admin.options._option_value_translations_form',
+            'model' => $optionValue ?? null,
+            'label' => $optionValue->id ?? null,
+            'formContent' => [
+                'id' => 'optionValues',
+                'option_id' => 'option_id',
+                'option_id_value' => $optionValue->option_id ?? null,
+                'value_id' => 'option_value',
+            ],
+        ]);
+    }
+
+    public function putOptionValue()
+    {
+        return json_encode(1);
     }
 }

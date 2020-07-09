@@ -2,6 +2,7 @@
 
 namespace App\Domain\OptionValues\Models;
 
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -12,17 +13,21 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $order
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue whereOptionId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue whereOrder($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Model\OptionValue whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereOptionId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereOrder($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereUpdatedAt($value)
  * @mixin \Eloquent
  */
 class OptionValue extends Model
 {
-    //
+    use Translatable;
+
+    protected $guarded = ['id'];
+
+    public $translatedAttributes = ['name'];
 }

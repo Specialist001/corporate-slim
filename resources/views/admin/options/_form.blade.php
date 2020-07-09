@@ -24,7 +24,23 @@
     </div>
 </div>
 
+<?php //foreach($option->optionValues as $optValue) { ?>
+{{--@component('component.modal', ['id' => 'option_'.$optValue->id, 'class' => 'btn btn-sm btn-secondary ml-2'])--}}
+{{--    @slot('label')--}}
+{{--        {{$optValue->name}}--}}
+{{--    @endslot--}}
+{{--    @slot('title')--}}
+{{--        {{$optValue->name}}--}}
+{{--    @endslot--}}
+{{--    @component('component.translations', ['form' => 'admin.options._option_value_translations_form', 'model' => $optValue ?? null, 'label' => $optValue->id  ])@endcomponent--}}
+{{--@endcomponent--}}
+
+<?php //} ?>
+
 @component('component.translations', ['form' => 'admin.options._translations_form', 'model' => $option ?? null])@endcomponent
+
+
+
 
 @component('component.tiny-mc')@endcomponent
 @component('component.bootstrap-tagsinput')@endcomponent

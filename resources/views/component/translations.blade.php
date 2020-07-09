@@ -3,7 +3,7 @@
 @if(count($all_locales) > 1)
     <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a href="#{{$default}}{{$label ?? ''}}" aria-controls="{{$default}}{{$label ?? ''}}" role="tab" data-toggle="tab" aria-expanded="false">                
+            <a href="#{{$default}}{{$label ?? ''}}" aria-controls="{{$default}}{{$label ?? ''}}" role="tab" data-toggle="tab" aria-expanded="false">
                 @lang('admin.locales.'.$default)
             </a>
         </li>
@@ -18,7 +18,11 @@
         @endforeach
     </ul>
 @endif
-
+@isset($formContent)
+    <form id="{{$formContent['id']}}">
+        <input type="hidden" name="{{$formContent['option_id']}}" value="{{$formContent['option_id_value']}}">
+        <input type="hidden" name="{{$formContent['value_id']}}" value="{{$model->id ?? ''}}">
+@endisset
 <div class="tab-content">
     <div class="tab-pane active" id="{{$default}}{{$label??''}}" role="tabpanel">
         @include($form, ['lang' => $default, 'model' => $model])
@@ -33,4 +37,7 @@
         @endif
     @endforeach
 </div>
-
+@isset($formContent)
+    <a class="btn btn-success" id="saveValue">Save</a>
+    </form>
+@endisset
