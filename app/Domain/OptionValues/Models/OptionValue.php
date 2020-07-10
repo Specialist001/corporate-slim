@@ -22,6 +22,19 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read \App\Domain\OptionValues\Models\OptionValueTranslation $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\OptionValues\Models\OptionValueTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue listsTranslations($translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue notTranslatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue orWhereTranslation($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue translatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue withTranslation()
  */
 class OptionValue extends Model
 {

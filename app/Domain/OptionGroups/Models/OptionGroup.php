@@ -3,6 +3,7 @@
 namespace App\Domain\OptionGroups\Models;
 
 use App\Domain\Options\Models\Option;
+use App\Domain\ProductCategories\Models\ProductCategory;
 use App\Services\FilterService\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -40,6 +41,10 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionGroups\Models\OptionGroup whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionGroups\Models\OptionGroup withTranslation()
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Options\Models\Option[] $options
+ * @property-read int|null $options_count
+ * @property-read \App\Domain\ProductCategories\Models\ProductCategory $productCategories
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionGroups\Models\OptionGroup actives()
  */
 class OptionGroup extends Model
 {
@@ -80,5 +85,10 @@ class OptionGroup extends Model
     public function options()
     {
         return $this->hasMany(Option::class);
+    }
+
+    public function productCategories()
+    {
+        return $this->belongsTo(ProductCategory::class);
     }
 }

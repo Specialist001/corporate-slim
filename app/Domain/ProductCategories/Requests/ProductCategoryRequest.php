@@ -2,6 +2,7 @@
 
 namespace App\Domain\ProductCategories\Requests;
 
+use App\Services\TranslationService\TranslationsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProductCategoryRequest extends FormRequest
@@ -13,7 +14,7 @@ class ProductCategoryRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +25,23 @@ class ProductCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'active' => 'nullable|boolean',
+            'order' => 'nullable|integer',
+            'on_main' => 'nullable|boolean',
+            'slug' => 'nullable|string|max:255',
+            'type' => 'nullable|string|max:255',
+            'image' => 'nullable|image|mimes:jpeg,bmp,png',
+            'icon' => 'nullable|image|mimes:jpeg,bmp,png',
+
+            'translations' => ['required', new TranslationsRule()],
+            'translations.'.\LaravelLocalization::getDefaultLocale().'.title' => 'required|max:255',
+
+            'translations.*.title' => 'max:255',
+            'translations.*.short' => 'nullable|string|max:255',
+
+            'translations.*.meta_title' => 'max:255',
+            'translations.*.meta_keywords' => 'nullable|string|max:255',
+            'translations.*.meta_description' => 'nullable|string|max:255',
         ];
     }
 }

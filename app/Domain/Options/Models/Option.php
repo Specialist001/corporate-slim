@@ -43,6 +43,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option whereTranslationLike($translationField, $value, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option withTranslation()
+ * @property-read \App\Domain\OptionGroups\Models\OptionGroup $optionGroup
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\OptionValues\Models\OptionValue[] $optionValues
+ * @property-read int|null $option_values_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option checkbox()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option inputs()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Options\Models\Option radio()
  */
 class Option extends Model
 {
