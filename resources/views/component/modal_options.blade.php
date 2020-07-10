@@ -3,6 +3,13 @@
 {{--</button>--}}
 
 <!-- Modal -->
+@push('styles')
+    <style type="text/css">
+        .valueBtn {
+            margin: 0 5px 5px 0;
+        }
+    </style>
+@endpush
 
 <div class="modal fade" id="option_value" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -40,32 +47,38 @@
             });
 
             $('body').on('click', '.valueBtn', function () {
-
                 var value_id = $(this).data('option_value_id');
                 $.get("/options/getOptionValue" +'/' + value_id, function (data) {
                     $('#option_value').find('.modal-body').html(data);
                 })
-
+            });
+            $('body').on('click', '.addValueBtn', function () {
+                var value_id = $(this).data('option_id');
+                $.get("/options/createOptionValue" +'/' + value_id, function (data) {
+                    $('#option_value').find('.modal-body').html(data);
+                })
             });
 
-            $('#addValue').click(function (e) {
+            $('body').on('click', '#addValue', function (e) {
+            // $('#addValue').click(function (e) {
                 e.preventDefault();
                 $(this).html('Sending..');
                 $.ajax({
                     data: $('#optionValues').serialize(),
-                    url: "{{ route('admin.options.setOptionValue') }}",
+                    url: "/options/addOptionValue",
                     type: "POST",
                     dataType: 'json',
                     success: function (data) {
-                        $('#productForm').trigger("reset");
-                        $('#ajaxModel').modal('hide');
-                        table.draw();
+                        $('.option-values').append("" +
+                            "<button type='button' class='btn btn-secondary valueBtn' id='ov_"+data.id+"' data-option_value_id='"+data.id+"' data-toggle='modal' data-target='#option_value'>"
+                            + data.name
+                            + "</button>");
+                        $('#option_value').modal('hide');
                     },
                     error: function (data) {
                         console.log('Error:', data);
                         $('#saveBtn').html('Save Changes');
                     }
-
                 });
             });
 
@@ -74,39 +87,38 @@
                 e.preventDefault();
                 var optionValuesForm = $('#optionValues');
                 var option_value = optionValuesForm.find("input[name*='option_value']");
-                console.log(option_value);
 
                 $(this).html('Sending..');
                 $.ajax({
                     data: optionValuesForm.serialize(),
-                    url: "/options/putOptionValue",
+                    url: "/options/updateOptionValue",
                     type: 'POST',
                     // dataType: 'json',
                     async: true,
                     success: function (data) {
-                        // $('#productForm').trigger("reset");
-                        // table.draw();
+                        console.log(data.name);
+                        $('#ov_'+data.id).html(data.name);
                         $('#option_value').modal('hide');
                     },
                     error: function (data) {
                         console.log('Error:', data);
                         $('#saveBtn').html('Save Changes');
                     }
-
                 });
             });
 
-            $('#deleteValue').click(function (e) {
+            $('body').on('click', '#deleteValue', function (e) {
                 e.preventDefault();
-                $(this).html('Sending..');
+                var value_id = $(this).data('option_value_id');
+                $(this).html('Deleting..');
+
                 $.ajax({
-                    data: $('#optionValues').serialize(),
-                    url: "/options/putOptionValue",
-                    type: "PUT",
+                    data: '',
+                    url: "/options/deleteOptionValue" +'/' + value_id,
+                    type: "DELETE",
                     dataType: 'json',
                     success: function (data) {
-                        // $('#productForm').trigger("reset");
-                        // table.draw();
+                        $('#ov_'+value_id).remove();
                         $('#option_value').modal('hide');
                     },
                     error: function (data) {

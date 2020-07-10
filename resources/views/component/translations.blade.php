@@ -38,6 +38,10 @@
     @endforeach
 </div>
 @isset($formContent)
-    <a class="btn btn-success" id="saveValue">Save</a>
+    <a class="btn btn-success" id="{{$model->id ? 'saveValue' : 'addValue'}}">Save</a>
+    @isset($isOld)
+        <a class="btn btn-danger" id="deleteValue" data-option_value_id="{{$model->id}}">Delete</a>
+    @endisset
     </form>
+
 @endisset

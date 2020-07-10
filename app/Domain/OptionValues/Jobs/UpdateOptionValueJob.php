@@ -39,7 +39,7 @@ class UpdateOptionValueJob
         try {
             $optionValue = $this->optionValue;
             $optionValue->option_id = $this->request->input('option_id');
-            $optionValue->order = $this->request->input('order', 0);
+//            $optionValue->order = $this->request->input('order', 0);
             $optionValue->save();
 
             $optionValue->translations()->delete();

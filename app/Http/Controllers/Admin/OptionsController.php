@@ -9,7 +9,11 @@ use App\Domain\Options\Jobs\StoreOptionJob;
 use App\Domain\Options\Jobs\UpdateOptionJob;
 use App\Domain\Options\Models\Option;
 use App\Domain\Options\Requests\OptionRequest;
+use App\Domain\OptionValues\Jobs\DeleteOptionValueJob;
+use App\Domain\OptionValues\Jobs\StoreOptionValueJob;
+use App\Domain\OptionValues\Jobs\UpdateOptionValueJob;
 use App\Domain\OptionValues\Models\OptionValue;
+use App\Domain\OptionValues\Requests\OptionValueRequest;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
@@ -132,23 +136,73 @@ class OptionsController extends Controller
         }
     }
 
+    public function createOptionValue(Option $option)
+    {
+        return view('component.translations', [
+            'form' => 'admin.options._option_value_translations_form',
+            'model' => new OptionValue(),
+            'label' => '_optionValue',
+            'formContent' => [
+                'id' => 'optionValues',
+                'option_id' => 'option_id',
+                'option_id_value' => $option->id ?? null,
+                'value_id' => 'id',
+            ],
+        ]);
+    }
     public function getOptionValue(OptionValue $optionValue)
     {
         return view('component.translations', [
             'form' => 'admin.options._option_value_translations_form',
             'model' => $optionValue ?? null,
-            'label' => $optionValue->id ?? null,
+            'label' => $optionValue->id ?? '_optionValue',
             'formContent' => [
                 'id' => 'optionValues',
                 'option_id' => 'option_id',
                 'option_id_value' => $optionValue->option_id ?? null,
-                'value_id' => 'option_value',
+                'value_id' => 'id',
             ],
+            'isOld' => true,
         ]);
     }
 
-    public function putOptionValue()
+    public function addOptionValue(OptionValueRequest $request)
     {
-        return json_encode(1);
+        try {
+            $value = $this->dispatchNow(new StoreOptionValueJob($request));
+            return response()->json($value, 200);
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
+    }
+
+    /**
+     * @param OptionValueRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateOptionValue(OptionValueRequest $request)
+    {
+        $optionValue = OptionValue::where(['id'=>$request->id])->first();
+        try {
+            $value = $this->dispatchNow(new UpdateOptionValueJob($request, $optionValue));
+            return response()->json($value, 200);
+
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
+    }
+
+    /**
+     * @param OptionValue $optionValue
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function deleteOptionValue(OptionValue $optionValue)
+    {
+        try {
+            $this->dispatchNow(new DeleteOptionValueJob($optionValue));
+            return response()->json('deleted', 200);
+        } catch (\Exception $exception) {
+            return response()->json($exception, 500);
+        }
     }
 }

@@ -1,7 +1,7 @@
 @extends('admin.layout')
 
 @section('center_content')
-	<div class="col-md-12">
+	<div class="col-md-7">
 		<form action="{{ route('admin.options.store') }}" method="post" enctype="multipart/form-data">
 			@csrf
 			@component('component.white-box', ['title' => trans('common.titles.options').': '.trans('admin.creating')])
