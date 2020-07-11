@@ -30,8 +30,8 @@ $(function() {
         }
 
     };
-    $(window).ready(set);
-    $(window).on("resize", set);
+    // $(window).ready(set);
+    // $(window).on("resize", set);
 
     /* ========== Theme Options ========== */
 
@@ -42,12 +42,14 @@ $(function() {
             $("body").removeClass("mini-sidebar");
             $('.top-left-part span').show();
             $(".sidebartoggler i").addClass("fa fa-bars");
+            $.removeCookie("menu_left_minified", { path: "/" });
         } else {
             $("body").trigger("resize");
             $(".scroll-sidebar, .slimScrollDiv").css("overflow-x", "visible").parent().css("overflow", "visible");
             $("body").addClass("mini-sidebar");
             $('.top-left-part span').hide();
             $(".sidebartoggler i").removeClass("fa fa-bars");
+            $.cookie("menu_left_minified", "mini-sidebar", { path: "/" });
         }
     });
 

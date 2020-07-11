@@ -111,6 +111,7 @@
 <!-- ===== Menu Plugin JavaScript ===== -->
 <script type="text/javascript" src="{{ asset('admin/sidebarmenu.js') }}"></script>
 
+<script type="text/javascript" src="{{ asset('admin/js/plugin.js') }}"></script>
 <script src="{{ asset('admin/toast/js/jquery.toast.js') }}"></script>
 <!-- Custom Theme JavaScript -->
 <script type="text/javascript" src="{{ asset('admin/custom.js') }}"></script>

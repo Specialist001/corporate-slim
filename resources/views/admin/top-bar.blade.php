@@ -9,7 +9,11 @@
             <b>
                 <img src="{{ asset('images/logo-cubic.png') }}" alt="home" />
             </b>
-            <span><img src="{{ asset('images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
+            <span 
+                @if(Cookie::get('menu_left_minified') !== null)
+                style="display: none"
+                @endif
+            ><img src="{{ asset('images/logo-text.png') }}" alt="homepage" class="dark-logo" /></span>
         </a>
     </div>
     <ul class="nav navbar-top-links navbar-left hidden-xs">
