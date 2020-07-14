@@ -77,7 +77,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                    	@foreach($serviceCategories as $item)
+                    	@foreach($productCategories as $item)
                     		<tr>
                                 <td>{{ $item->id }}</td>
                                 <td>

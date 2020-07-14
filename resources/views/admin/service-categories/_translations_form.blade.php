@@ -43,7 +43,7 @@
 </div>
 <?php $value_meta_description = old('translations.'.$lang.'.meta_description', (isset($model) && $model->translate($lang)) ? $model->translate($lang)->meta_description: '') ?>
 <div class="row">
-    <div class="col-md-12 form-group {!! $errors->first('translations.'.$lang.'.meta_description', 'has-danger')!!}"
+    <div class="col-md-12 form-group {!! $errors->first('translations.'.$lang.'.meta_description', 'has-danger')!!}">
         <label class="text-md-right col-form-label-sm" for="{{$lang}}-meta_description">@lang('admin.seo.meta_description')</label>
         <textarea name="translations[{{ $lang }}][meta_description]" class="form-control" id="{{$lang}}-meta_description" >{{ $value_meta_description }}</textarea>
         {!! $errors->first('translations.'.$lang.'.meta_description', '<small class="help-block text-danger">:message</small>') !!}

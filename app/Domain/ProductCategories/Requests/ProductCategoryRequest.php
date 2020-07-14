@@ -25,7 +25,7 @@ class ProductCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'parent_id' => 'nullable|exists:product_categories,id',
+//            'parent_id' => 'nullable|exists:product_categories,id',
             'active' => 'required|boolean',
             'order' => 'nullable|integer',
             'on_main' => 'nullable|boolean',

@@ -71,6 +71,13 @@ class UpdateProductCategoryJob implements ShouldQueue
             }
             $productCategory->save();
 
+            $optionGroups = $this->request->input('option_group_id');
+            $productCategory->optionGroups()->detach();
+            $productCategory->optionGroups()->attach($optionGroups, ['product_category_id' => $productCategory->id]);
+//            foreach ($this->request->input('option_groups', []) as $optionGroup) {
+//
+//            }
+
         } catch (\Exception $exception) {
             \DB::rollBack();
             throw $exception;

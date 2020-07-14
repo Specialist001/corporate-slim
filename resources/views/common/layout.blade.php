@@ -52,7 +52,7 @@
     @stack('styles')
 
 </head>
-<body class="{{ Request::cookie("menu_left_minified", "mini-sidebar") }}">
+<body class="{{ Request::cookie("menu_left_minified") }}">
 <div id="wrapper">
     <div class="preloader">
         <div class="cssload-speeding-wheel"></div>
@@ -71,19 +71,19 @@
     <!-- ===== Page-Content ===== -->
     <div class="page-wrapper">
         @if (session()->has('success'))
-            @component('component.alert', 
+            @component('component.alert',
             ['type' => 'success', 'icon' => 'success', 'position' => 'top-right'])
                 {{ session('success') }}
             @endcomponent
         @endif
         @if (session()->has('warning'))
-            @component('component.alert', 
+            @component('component.alert',
             ['type' => 'warning', 'icon' => 'warning', 'position' => 'top-right'])
                 {{ session('warning') }}
             @endcomponent
         @endif
         @if (session()->has('danger'))
-            @component('component.alert', 
+            @component('component.alert',
             ['type' => 'danger', 'icon' => 'danger', 'position' => 'top-right'])
                 {{ session('danger') }}
             @endcomponent

@@ -1,10 +1,10 @@
 @foreach($categories as $category_list)
     <option value="{!!  $category_list->id !!}"
-    @isset($serviceCategory->id)
-        @if($serviceCategory->parent_id == $category_list->id)
+    @isset($productCategory->id)
+        @if($productCategory->parent_id == $category_list->id)
             selected=""
         @endif
-        @if($serviceCategory->id == $category_list->id)
+        @if($productCategory->id == $category_list->id)
             hidden=""
         @endif
     @endisset
@@ -13,7 +13,7 @@
     </option>
 
     @if(count($category_list->children) > 0)
-        @include('admin.service-categories._categories',[
+        @include('admin.product-categories._categories',[
         	'categories' => $category_list->children,
         	'delimiter' => '-'.$delimiter
     	])

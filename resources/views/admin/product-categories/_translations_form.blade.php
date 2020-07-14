@@ -13,15 +13,6 @@
     </div>
 </div>
 
-<?php $value_full = old('translations.'.$lang.'.full', (isset($model) && $model->translate($lang)) ? $model->translate($lang)->full: '') ?>
-<div class="row">
-    <div class="col-md-12 form-group {!! $errors->first('translations.'.$lang.'.full', 'has-danger')!!}">
-        <label class="text-md-right col-form-label-sm" for="{{$lang}}-full">@lang('admin.full')</label>
-        <textarea name="translations[{{ $lang }}][full]" class="form-control text-editor " id="{{$lang}}-full">{{ $value_full }}</textarea>
-        {!! $errors->first('translations.'.$lang.'.full', '<small class="help-block text-danger">:message</small>') !!}
-    </div>
-</div>
-
 <br>
 
 <?php $value_meta_title = old('translations.'.$lang.'.meta_title', (isset($model) && $model->translate($lang)) ? $model->translate($lang)->meta_title: '') ?>
@@ -43,7 +34,7 @@
 </div>
 <?php $value_meta_description = old('translations.'.$lang.'.meta_description', (isset($model) && $model->translate($lang)) ? $model->translate($lang)->meta_description: '') ?>
 <div class="row">
-    <div class="col-md-12 form-group {!! $errors->first('translations.'.$lang.'.meta_description', 'has-danger')!!}"
+    <div class="col-md-12 form-group {!! $errors->first('translations.'.$lang.'.meta_description', 'has-danger')!!}">
         <label class="text-md-right col-form-label-sm" for="{{$lang}}-meta_description">@lang('admin.seo.meta_description')</label>
         <textarea name="translations[{{ $lang }}][meta_description]" class="form-control" id="{{$lang}}-meta_description" >{{ $value_meta_description }}</textarea>
         {!! $errors->first('translations.'.$lang.'.meta_description', '<small class="help-block text-danger">:message</small>') !!}

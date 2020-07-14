@@ -26,6 +26,16 @@ return [
         'height' => 200,
         'default' => 'uploads/defaults/service_category_icon.png',
     ],
+    'product_category_image' => [
+        'width' => 800,
+        'height' => 600,
+        'default' => 'uploads/defaults/product_category_image.png',
+    ],
+    'product_category_icon' => [
+        'width' => 200,
+        'height' => 200,
+        'default' => 'uploads/defaults/product_category_icon.png',
+    ],
     'service_image' => [
         'width' => 600,
         'height' => 400,

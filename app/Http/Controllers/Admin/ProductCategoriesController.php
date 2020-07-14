@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Domain\OptionGroups\Models\OptionGroup;
 use App\Domain\ProductCategories\Filters\ProductCategoryFilter;
 use App\Domain\ProductCategories\Jobs\DeleteProductCategoryJob;
 use App\Domain\ProductCategories\Jobs\StoreProductCategoryJob;
@@ -54,6 +55,7 @@ class ProductCategoriesController extends Controller
      */
     public function store(ProductCategoryRequest $request)
     {
+//        dd($request->input(),$this->dispatchNow(new StoreProductCategoryJob($request)));
         try {
             $this->dispatchNow(new StoreProductCategoryJob($request));
             return redirect()->route('admin.product-categories.index')->with('success', trans('admin.flash.created'));
@@ -84,12 +86,14 @@ class ProductCategoriesController extends Controller
         $category = [];
         $categories = ProductCategory::with('children')->where('parent_id',0)->get();
         $delimiter = '';
+        $optionGroups = OptionGroup::withTranslation()->get();
 
         return view('admin.product-categories.edit', [
             // 'category' => $category,
             'productCategory' => $productCategory,
             'categories' => $categories,
             'delimiter' => $delimiter,
+            'optionGroups' => $optionGroups
         ]);
     }
 
@@ -102,6 +106,7 @@ class ProductCategoriesController extends Controller
      */
     public function update(ProductCategoryRequest $request, ProductCategory $productCategory)
     {
+//        dd($request->input($this->dispatchNow(new UpdateProductCategoryJob($request, $productCategory))));
         try {
             $this->dispatchNow(new UpdateProductCategoryJob($request, $productCategory));
             return redirect()->route('admin.product-categories.index')->with('success', trans('admin.flash.edited'));

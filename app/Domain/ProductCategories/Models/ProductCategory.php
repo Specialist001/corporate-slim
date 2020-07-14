@@ -175,8 +175,13 @@ class ProductCategory extends Model
 
     public function optionGroups()
     {
-        return $this->belongsTo(OptionGroup::class);
+        return $this->belongsToMany(OptionGroup::class);
     }
 
-
+    public function optionGroupsArray()
+    {
+//        $opt = $this->optionGroups()->get()->toArray();
+        $ogpc = \DB::table('option_group_product_category')->where(['product_category_id' => $this->id])->get()->toArray();
+        return array_column($ogpc, 'option_group_id');
+    }
 }
