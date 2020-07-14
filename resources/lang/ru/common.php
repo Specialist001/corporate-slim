@@ -25,6 +25,7 @@ return [
         'option_group' => 'Группа опции',
         'option_groups' => 'Группы опции',
         'options' => 'Опции',
+        'product_categories' => 'Категории товаров',
     ],
 
     'next' => 'Сдедующая',

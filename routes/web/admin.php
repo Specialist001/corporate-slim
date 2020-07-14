@@ -119,6 +119,20 @@ Route::group([
                 Route::post('updateOptionValue', 'OptionsController@updateOptionValue')->name('updateOptionValue');
                 Route::delete('deleteOptionValue/{optionValue}', 'OptionsController@deleteOptionValue')->name('deleteOptionValue');
             });
+
+            Route::group([
+                'prefix' => 'product-categories',
+                'as' => 'product-categories.',
+            ], function () {
+                Route::get('', 'ProductCategoriesController@index')->name('index');
+                Route::get('create', 'ProductCategoriesController@create')->name('create');
+                Route::post('store', 'ProductCategoriesController@store')->name('store');
+                Route::get('edit/{productCategory}', 'ProductCategoriesController@edit')->name('edit');
+                Route::put('update/{productCategory}', 'ProductCategoriesController@update')->name('update');
+                Route::delete('destroy/{productCategory}', 'ProductCategoriesController@destroy')->name('destroy');
+                Route::delete('image/{productCategory?}', 'ProductCategoriesController@deleteImage')->name('destroy.image');
+                Route::delete('icon/{productCategory?}', 'ProductCategoriesController@deleteIcon')->name('destroy.icon');
+            });
         });
 
         //Route::get('', 'HomeController@index')->name('home');
