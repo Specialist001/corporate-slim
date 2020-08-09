@@ -1,9 +1,69 @@
+<?php
+use App\Helpers\Yii\ArrayHelper;
+
+//$cat_filter[] = 'Без родителя';
+$cat_options = [];
+$cats = $categories;
+$model = $productCategory;
+if (!empty($cats)) {
+    foreach ($cats as $cat) {
+        if ($model->id == $cat->id) continue;
+        $cat_filters[$cat->id] = $cat->title;
+        if ($cat->children) {
+            $cat_filters = ArrayHelper::merge($cat_filters, getCategoryChild($cat->children, $model));
+            $cat_options = ArrayHelper::merge($cat_options, getCategoryOptions($cat->children, $model));
+        }
+    }
+}
+
+function getCategoryChild($cat, $model, $index = 1)
+{
+    $result = [];
+    $prefix = '';
+    for ($i = 0; $i < $index; $i++) {
+        $prefix .= '-';
+    }
+    $style = false;
+    if ($index == 1) $style = 'bold';
+    foreach ($cat as $item) {
+        if ($model->id == $item->id) continue;
+        if ($style) $result[$item->id] = $prefix . $item->title;
+        else $result[$item->id] = $prefix . $item->title;
+        if ($item->children) {
+            $result = ArrayHelper::merge($result, getCategoryChild($item->children, $model, $index + 1));
+        }
+    }
+    return $result;
+}
+
+function getCategoryOptions($cat, $model, $index = 1)
+{
+    $result = [];
+    foreach ($cat as $item) {
+        if ($model->id == $item->id) continue;
+        $result[$item->id] =  ['style' => 'font-weight: bold;'];
+    }
+    return $result;
+}
+
+?>
 <div class="row ">
     <div class="col-md-3 form-group {!! $errors->first('parent_id', 'has-danger')!!}">
         <label class="col-form-label-sm" for="parent_id">@lang('admin.parent_category')</label>
-        <select name="parent_id" id="parent_id" class="form-control" required>
+        <select name="parent_id" id="parent_id" class="form-control select2" required>
             <option value="0">Без родительской</option>
-            @include('admin.product-categories._categories', ['categories'=>$categories])
+            @foreach($cat_filters as $key => $cat_filter)
+                <option value="{!!  $key !!}"
+                @isset($productCategory->id)
+                    @if($productCategory->parent_id == $key)
+                    selected=""
+                    @endif
+                @endisset
+                >
+                    {!! $cat_filter !!}
+                </option>
+            @endforeach
+{{--            @include('admin.product-categories._categories', ['categories'=>$categories, 'productCategory' => $productCategory])--}}
         </select>
         {!! $errors->first('type', '<small class="form-control-feedback">:message</small>') !!}
     </div>

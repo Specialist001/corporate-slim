@@ -40,10 +40,12 @@ class ProductCategoriesController extends Controller
     {
         $categories = ProductCategory::with('children')->where('parent_id', 0)->get();
         $delimiter = '';
+        $productCategory = new ProductCategory();
 
         return view('admin.product-categories.create', [
             'categories' => $categories,
             'delimiter' => $delimiter,
+            'productCategory' => $productCategory,
         ]);
     }
 

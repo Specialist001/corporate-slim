@@ -1,10 +1,14 @@
 @foreach($categories as $category_list)
+
     <option value="{!!  $category_list->id !!}"
     @isset($productCategory->id)
         @if($productCategory->parent_id == $category_list->id)
             selected=""
         @endif
         @if($productCategory->id == $category_list->id)
+            hidden=""
+        @endif
+        @if($productCategory->id == $category_list->parent_id)
             hidden=""
         @endif
     @endisset
