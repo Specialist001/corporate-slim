@@ -16,21 +16,23 @@ use Illuminate\Database\Eloquent\Model;
  * @property string|null $meta_keywords
  * @property string|null $meta_description
  * @property string $locale
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereFull($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereLocale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereMetaDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereMetaKeywords($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereMetaTitle($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereShort($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductTranslation whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereFull($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereMetaDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereMetaKeywords($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereMetaTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereShort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductTranslation whereTitle($value)
  * @mixin \Eloquent
  */
 class ProductTranslation extends Model
 {
-    //
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
 }

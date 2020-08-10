@@ -2,7 +2,7 @@
 
 @section('center_content')
 <div class="col-md-12">
-	@component('component.white-box', ['title' => trans('admin.titles.product_categories')])
+	@component('component.white-box', ['title' => trans('common.titles.product_categories')])
 		@slot('buttons')
             @component('component.modal', ['id' => 'filter', 'class' => 'btn btn-sm btn-secondary ml-2'])
                 @slot('label')

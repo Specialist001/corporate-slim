@@ -2,6 +2,7 @@
 
 namespace App\Domain\Units\Requests;
 
+use App\Services\TranslationService\TranslationsRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UnitRequest extends FormRequest
@@ -24,7 +25,8 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'translations' => ['required', new TranslationsRule()],
+            'translations.'.\LaravelLocalization::getDefaultLocale().'.name' => 'required|max:255',
         ];
     }
 }

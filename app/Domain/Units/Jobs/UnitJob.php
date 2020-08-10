@@ -2,33 +2,62 @@
 
 namespace App\Domain\Units\Jobs;
 
+use App\Domain\Units\Models\Unit;
+use App\Domain\Units\Models\UnitTranslation;
+use App\Domain\Units\Requests\UnitRequest;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Queue\InteractsWithQueue;
-use Illuminate\Queue\SerializesModels;
 
 class UnitJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, Queueable;
+
+    private $request;
+    private $unit;
 
     /**
      * Create a new job instance.
      *
-     * @return void
+     * @param UnitRequest $request
+     * @param Unit $unit
      */
-    public function __construct()
+    public function __construct(UnitRequest $request, Unit $unit)
     {
-        //
+        $this->request = $request;
+        $this->unit = $unit;
     }
 
     /**
      * Execute the job.
      *
      * @return void
+     * @throws \Exception
      */
     public function handle()
     {
-        //
+        \DB::beginTransaction();
+        try {
+            $unit = $this->unit;
+
+            $unit->translations()->delete();
+            $translations = [];
+            foreach ($this->request->input('translations', []) as $translate) {
+                if ($translate['name'] == '') {
+                    continue;
+                }
+                $translations[] = new UnitTranslation($translate);
+            }
+            if (!empty($translations)) {
+                $unit->translations()->saveMany($translations);
+                $unit->save();
+            }
+        } catch (\Exception $exception) {
+            \DB::rollBack();
+            throw $exception;
+        }
+        \DB::commit();
+
+        return $unit;
     }
 }

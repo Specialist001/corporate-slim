@@ -34,6 +34,7 @@ class ProductCategoryFilter extends Filter
     public function init()
     {
         $this->addSortable('id');
+        $this->addSortable('parent_id');
         $this->addSortable('order');
         $this->addSortable('title', $this->translationTable);
         $this->addSortable('created_at');
@@ -52,6 +53,11 @@ class ProductCategoryFilter extends Filter
     public function id($value)
     {
         return $this->builder->where($this->column('id'), $value);
+    }
+
+    public function parent_id($value)
+    {
+        return $this->builder->where($this->column('parent_id'), $value);
     }
 
     public function active($value)

@@ -11,16 +11,18 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $unit_id
  * @property string|null $name
  * @property string $locale
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation whereLocale($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation whereName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Model\UnitTranslation whereUnitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation whereLocale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\UnitTranslation whereUnitId($value)
  * @mixin \Eloquent
  */
 class UnitTranslation extends Model
 {
-    //
+    public $timestamps = false;
+
+    protected $guarded = ['id'];
 }

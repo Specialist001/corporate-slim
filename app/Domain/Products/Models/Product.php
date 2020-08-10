@@ -2,6 +2,11 @@
 
 namespace App\Domain\Products\Models;
 
+use App\Domain\Brands\Models\Brand;
+use App\Domain\ProductCategories\Models\ProductCategory;
+use App\Domain\Units\Models\Unit;
+use App\Services\FilterService\Filterable;
+use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,29 +29,75 @@ use Illuminate\Database\Eloquent\Model;
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property string|null $deleted_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereActive($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereAmount($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereBrandId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereManufacturer($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereOldPrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereOnMain($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product wherePrice($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereProductCategoryId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereSku($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereSlug($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereUnitId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereWarranty($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\Product whereWholesale($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereActive($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereAmount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereBrandId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereManufacturer($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereOldPrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereOnMain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product wherePrice($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereProductCategoryId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereSku($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereSlug($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereUnitId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereWarranty($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereWholesale($value)
  * @mixin \Eloquent
  */
 class Product extends Model
 {
-    //
+    use Translatable, Filterable;
+
+    protected $guarded = ['id'];
+
+    public $translatedAttributes = ['title', 'short', 'full', 'meta_title', 'meta_keywords', 'meta_description'];
+
+    protected static $imagePath = 'uploads/products/';
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(ProductCategory::class, 'product_category_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function unit()
+    {
+        return $this->belongsTo(Unit::class, 'page_category_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'page_category_id');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function comments()
+    {
+        return $this->hasMany(ProductComment::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function images()
+    {
+        return $this->hasMany(ProductImage::class);
+    }
 }

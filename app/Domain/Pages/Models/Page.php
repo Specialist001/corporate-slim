@@ -4,6 +4,7 @@
 namespace App\Domain\Pages\Models;
 
 
+use App\Domain\PageCategories\Models\PageCategory;
 use App\Services\FilterService\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -137,5 +138,13 @@ class Page extends Model
         }
         $this->image = null;
         $this->thumb = null;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function category()
+    {
+        return $this->belongsTo(PageCategory::class, 'page_category_id');
     }
 }
