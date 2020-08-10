@@ -14,7 +14,7 @@ class UnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,6 +25,7 @@ class UnitRequest extends FormRequest
     public function rules()
     {
         return [
+            'active' => 'nullable|boolean',
             'translations' => ['required', new TranslationsRule()],
             'translations.'.\LaravelLocalization::getDefaultLocale().'.name' => 'required|max:255',
         ];

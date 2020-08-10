@@ -81,4 +81,9 @@ return [
         'height' => 200,
         'default' => 'uploads/defaults/vacancy.png',
     ],
+    'brand_logo' => [
+        'width' => 150,
+        'height' => 150,
+        'default' => 'uploads/defaults/brand_logo.png',
+    ],
 ];

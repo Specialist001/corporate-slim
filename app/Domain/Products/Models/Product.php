@@ -50,6 +50,29 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereWarranty($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereWholesale($value)
  * @mixin \Eloquent
+ * @property-read \App\Domain\Brands\Models\Brand $brand
+ * @property-read \App\Domain\ProductCategories\Models\ProductCategory $category
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Products\Models\ProductComment[] $comments
+ * @property-read int|null $comments_count
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Products\Models\ProductImage[] $images
+ * @property-read int|null $images_count
+ * @property-read \App\Domain\Products\Models\ProductTranslation $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Products\Models\ProductTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @property-read \App\Domain\Units\Models\Unit $unit
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product filter(\App\Services\FilterService\Filter $filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product listsTranslations($translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product notTranslatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product orWhereTranslation($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product paginateFilter($perPage = 20)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product simplePaginateFilter($perPage = 20)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product translatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product whereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\Product withTranslation()
  */
 class Product extends Model
 {

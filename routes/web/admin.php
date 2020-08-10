@@ -91,6 +91,31 @@ Route::group([
             });
 
             Route::group([
+                'prefix' => 'brands',
+                'as' => 'brands.',
+            ], function () {
+                Route::get('', 'BrandsController@index')->name('index');
+                Route::get('create', 'BrandsController@create')->name('create');
+                Route::post('store', 'BrandsController@store')->name('store');
+                Route::get('edit/{brand}', 'BrandsController@edit')->name('edit');
+                Route::put('update/{brand}', 'BrandsController@update')->name('update');
+                Route::delete('destroy/{brand}', 'BrandsController@destroy')->name('destroy');
+                Route::delete('logo/{brand?}', 'BrandsController@deleteLogo')->name('destroy.logo');
+            });
+
+            Route::group([
+                'prefix' => 'units',
+                'as' => 'units.',
+            ], function () {
+                Route::get('', 'UnitsController@index')->name('index');
+                Route::get('create', 'UnitsController@create')->name('create');
+                Route::post('store', 'UnitsController@store')->name('store');
+                Route::get('edit/{unit}', 'UnitsController@edit')->name('edit');
+                Route::put('update/{unit}', 'UnitsController@update')->name('update');
+                Route::delete('destroy/{unit}', 'UnitsController@destroy')->name('destroy');
+            });
+
+            Route::group([
                 'prefix' => 'option-groups',
                 'as' => 'option-groups.',
             ], function () {

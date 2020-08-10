@@ -67,6 +67,7 @@ use Illuminate\Http\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\ProductCategories\Models\ProductCategory withTranslation()
  * @method static \Illuminate\Database\Query\Builder|\App\Domain\ProductCategories\Models\ProductCategory withTrashed()
  * @method static \Illuminate\Database\Query\Builder|\App\Domain\ProductCategories\Models\ProductCategory withoutTrashed()
+ * @property-read int|null $option_groups_count
  */
 class ProductCategory extends Model
 {

@@ -60,6 +60,7 @@ use Illuminate\Http\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Pages\Models\Page whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Pages\Models\Page withTranslation()
  * @mixin \Eloquent
+ * @property-read \App\Domain\PageCategories\Models\PageCategory|null $category
  */
 class Page extends Model
 {

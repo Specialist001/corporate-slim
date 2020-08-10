@@ -9,7 +9,7 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-class UnitJob implements ShouldQueue
+class UpdateUnitJob implements ShouldQueue
 {
     use Dispatchable, Queueable;
 
@@ -31,7 +31,7 @@ class UnitJob implements ShouldQueue
     /**
      * Execute the job.
      *
-     * @return void
+     * @return Unit
      * @throws \Exception
      */
     public function handle()

@@ -4,6 +4,7 @@ namespace App\Domain\Brands\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Services\FilterService\Filterable;
+use Illuminate\Http\UploadedFile;
 
 /**
  * App\Domain\Brands\Models\Brand
@@ -37,11 +38,63 @@ use App\Services\FilterService\Filterable;
 class Brand extends Model
 {
     use Filterable;
-    
+
     protected $guarded = ['id'];
 
+    /**
+     * @return bool
+     */
     public function isActive()
     {
         return $this->active === 1;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isOnMain()
+    {
+        return $this->on_main === 1;
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActives($query)
+    {
+        return $query->where('active', 1);
+    }
+
+    protected static $imagePath = 'uploads/brands/';
+
+    public static function getImagePath()
+    {
+        return self::$imagePath;
+    }
+
+    public function logoUrl()
+    {
+        if(!$this->logo) {
+            return asset(config('upload.brand_logo.default'));
+        }
+        return asset(static::getImagePath().$this->logo);
+    }
+
+    public function uploadLogo(UploadedFile $image)
+    {
+        $extension = $image->getClientOriginalExtension();
+        $filename = $this->id.'_'.uniqid().'.'.$extension;
+        \Image::make($image)->fit(config('upload.brand_logo.width'), config('upload.brand_logo.height'))->save(public_path(static::getImagePath().$filename));
+        return $filename;
+    }
+
+    public function deleteLogo()
+    {
+        $logoPath = public_path(static::getImagePath().$this->logo);
+        if ($this->logo != '' && file_exists($logoPath)) {
+            unlink($logoPath);
+        }
+        $this->logo = null;
     }
 }

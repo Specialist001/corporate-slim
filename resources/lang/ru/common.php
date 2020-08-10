@@ -26,6 +26,10 @@ return [
         'option_groups' => 'Группы опции',
         'options' => 'Опции',
         'product_categories' => 'Категории товаров',
+        'brands' => 'Бренды',
+        'brand' => 'Бренд',
+        'units' => 'Единицы',
+        'unit' => 'Единица',
     ],
 
     'next' => 'Сдедующая',

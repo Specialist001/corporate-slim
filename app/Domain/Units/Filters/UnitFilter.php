@@ -1,23 +1,25 @@
 <?php
 
-namespace App\Domain\News\Filters;
+
+namespace App\Domain\Units\Filters;
+
 
 use App\Services\FilterService\Filter;
 use Illuminate\Http\Request;
 
-class NewsFilter extends Filter
+class UnitFilter extends Filter
 {
     protected $available = [
         'id',
-        'type',
-        'title',
+        'active',
+        'name',
         'sort', 'perPage'
     ];
 
-    protected $translationTable = 'news_translations';
+    protected $translationTable = 'unit_translations';
 
     protected $defaults = [
-        'sort' => '-id'
+        'sort' => 'id'
     ];
 
     public function __construct(Request $request)
@@ -28,14 +30,14 @@ class NewsFilter extends Filter
     protected function init()
     {
         $this->addSortable('id');
-        $this->addSortable('title', $this->translationTable);
+        $this->addSortable('name', $this->translationTable);
 
         $this->addJoin($this->translationTable, function () {
             $this->builder->leftJoin($this->translationTable, function ($join) {
                 /**
                  * @var $join \Illuminate\Database\Query\JoinClause
                  */
-                $join->on($this->table . '.id', $this->translationTable . '.news_id')->where('locale', \App::getLocale());
+                $join->on($this->table . '.id', $this->translationTable . '.unit_id')->where('locale', \App::getLocale());
             })->select($this->table . '.*');
         });
     }
@@ -45,18 +47,13 @@ class NewsFilter extends Filter
         return $this->builder->where($this->column('id'), $value);
     }
 
-    public function type($value)
-    {
-        return $this->builder->where($this->column('type'), $value);
-    }
-
-    public function title($value)
+    public function name($value)
     {
         return $this->builder->whereHas('translations', function ($query) use ($value) {
             /**
              * @var $query \Illuminate\Database\Eloquent\Builder
              */
-            $query->where('title', 'like', '%' . $value . '%')
+            $query->where('name', 'like', '%' . $value . '%')
                 ->where('locale', \App::getLocale());
         });
     }

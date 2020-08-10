@@ -83,8 +83,6 @@ class NewsController extends Controller
      */
     public function update(NewsRequest $request, News $news)
     {
-        //dd($request->input(), $news);
-        // dd($this->dispatchNow(new UpdateNewsJob($request, $news)));
         try {
             $this->dispatchNow(new UpdateNewsJob($request, $news));
             return redirect()->route('admin.news.index')->with('success', trans('admin.flash.edited'));

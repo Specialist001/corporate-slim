@@ -18,6 +18,24 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereId($value)
  * @mixin \Eloquent
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Products\Models\Product[] $products
+ * @property-read int|null $products_count
+ * @property-read \App\Domain\Units\Models\UnitTranslation $translation
+ * @property-read \Illuminate\Database\Eloquent\Collection|\App\Domain\Units\Models\UnitTranslation[] $translations
+ * @property-read int|null $translations_count
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit filter(\App\Services\FilterService\Filter $filters)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit listsTranslations($translationField)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit notTranslatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit orWhereTranslation($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit orWhereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit orderByTranslation($translationField, $sortMethod = 'asc')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit paginateFilter($perPage = 20)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit simplePaginateFilter($perPage = 20)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit translated()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit translatedIn($locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereTranslationLike($translationField, $value, $locale = null)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit withTranslation()
  */
 class Unit extends Model
 {
@@ -26,6 +44,8 @@ class Unit extends Model
     protected $guarded = ['id'];
 
     public $translatedAttributes = ['name'];
+
+    public $timestamps = false;
 
     public function isActive()
     {

@@ -53,7 +53,8 @@ class BrandJob implements ShouldQueue
             $brand->save();
 
             if ($this->request->hasFile('logo')) {
-                $brand->logo = $brand->uploadImage($this->request->file('logo'));
+                $brand->deleteLogo();
+                $brand->logo = $brand->uploadLogo($this->request->file('logo'));
             } else {
                 $brand->logo = $brand->logo ?? null;
             }
