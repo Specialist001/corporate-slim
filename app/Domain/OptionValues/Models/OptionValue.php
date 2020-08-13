@@ -2,6 +2,7 @@
 
 namespace App\Domain\OptionValues\Models;
 
+use App\Domain\Options\Models\Option;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
 
@@ -35,6 +36,7 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue whereTranslationLike($translationField, $value, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\OptionValues\Models\OptionValue withTranslation()
+ * @property-read \App\Domain\Options\Models\Option $option
  */
 class OptionValue extends Model
 {
@@ -43,4 +45,12 @@ class OptionValue extends Model
     protected $guarded = ['id'];
 
     public $translatedAttributes = ['name'];
+
+    /**
+     * @return mixed
+     */
+    public function option()
+    {
+        return $this->belongsTo(Option::class)->withTranslation();
+    }
 }

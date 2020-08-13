@@ -3,6 +3,7 @@
 namespace App\Domain\Products\Models;
 
 use App\Domain\Brands\Models\Brand;
+use App\Domain\Options\Models\Option;
 use App\Domain\ProductCategories\Models\ProductCategory;
 use App\Domain\Units\Models\Unit;
 use App\Services\FilterService\Filterable;
@@ -82,7 +83,34 @@ class Product extends Model
 
     public $translatedAttributes = ['title', 'short', 'full', 'meta_title', 'meta_keywords', 'meta_description'];
 
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
+
+    /**
+     * @return bool
+     */
+    public function isActive()
+    {
+        return $this->active === 1;
+    }
+
+    /**
+     * @return array
+     */
+    public static function statuses()
+    {
+        return [
+            static::STATUS_ACTIVE,
+            static::STATUS_INACTIVE,
+        ];
+    }
+
     protected static $imagePath = 'uploads/products/';
+
+    public static function getImagePath()
+    {
+        return self::$imagePath;
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -97,7 +125,7 @@ class Product extends Model
      */
     public function unit()
     {
-        return $this->belongsTo(Unit::class, 'page_category_id');
+        return $this->belongsTo(Unit::class, 'unit_id');
     }
 
     /**
@@ -105,7 +133,7 @@ class Product extends Model
      */
     public function brand()
     {
-        return $this->belongsTo(Brand::class, 'page_category_id');
+        return $this->belongsTo(Brand::class, 'brand_id');
     }
 
     /**
@@ -122,5 +150,10 @@ class Product extends Model
     public function images()
     {
         return $this->hasMany(ProductImage::class);
+    }
+
+    public function options()
+    {
+        return $this->belongsToMany(Option::class,'product_options');
     }
 }

@@ -14,19 +14,25 @@ use Illuminate\Database\Eloquent\Model;
  * @property int|null $rating
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment query()
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereProductId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereRating($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereText($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Model\ProductComment whereUserId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment query()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereProductId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereRating($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Products\Models\ProductComment whereUserId($value)
  * @mixin \Eloquent
+ * @property-read \App\Domain\Products\Models\Product $product
  */
 class ProductComment extends Model
 {
-    //
+    protected $guarded = ['id'];
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
 }

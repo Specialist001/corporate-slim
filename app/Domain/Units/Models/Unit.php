@@ -36,10 +36,14 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereTranslation($translationField, $value, $locale = null, $method = 'whereHas', $operator = '=')
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit whereTranslationLike($translationField, $value, $locale = null)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit withTranslation()
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Units\Models\Unit actives()
  */
 class Unit extends Model
 {
     use Translatable, Filterable;
+
+    const STATUS_ACTIVE = 1;
+    const STATUS_INACTIVE = 0;
 
     protected $guarded = ['id'];
 
@@ -50,6 +54,23 @@ class Unit extends Model
     public function isActive()
     {
         return $this->active === 1;
+    }
+
+    public static function statuses()
+    {
+        return [
+            static::STATUS_ACTIVE,
+            static::STATUS_INACTIVE,
+        ];
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActives($query)
+    {
+        return $query->where('active', 1);
     }
 
     public function products()

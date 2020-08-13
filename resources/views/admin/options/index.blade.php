@@ -79,7 +79,7 @@
 	    @endslot
 		@if($options->isNotEmpty())
 			<div class="table-responsive">
-                <table class="table color-table primary-table">
+                <table class="table color-table primary-table" id="options">
                     <thead>
                         <tr>
                             <th>#</th>
@@ -127,3 +127,5 @@
 	@endcomponent
 </div>
 @endsection
+
+@component('component.data-table', ['id' => 'options'])@endcomponent

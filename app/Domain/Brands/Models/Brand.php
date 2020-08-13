@@ -34,6 +34,7 @@ use Illuminate\Http\UploadedFile;
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Brands\Models\Brand whereOrder($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Brands\Models\Brand whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder|\App\Domain\Brands\Models\Brand actives()
  */
 class Brand extends Model
 {
