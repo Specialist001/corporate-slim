@@ -41,6 +41,7 @@
                     <li> <a href="{{ route('admin.option-groups.index') }}">@lang('common.titles.option_groups')</a> </li>
                     <li> <a href="{{ route('admin.options.index') }}">@lang('common.titles.options')</a> </li>
                     <li> <a href="{{ route('admin.product-categories.index') }}">@lang('common.titles.product_categories')</a> </li>
+                    <li> <a href="{{ route('admin.products.index') }}">@lang('common.titles.products')</a> </li>
                     <li> <a href="index2.html">Clean Version</a> </li>
                     <li> <a href="index3.html">Analytical Version</a> </li>
                 </ul>

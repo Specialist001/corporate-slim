@@ -5,6 +5,7 @@ namespace App\Domain\Options\Models;
 use App\Domain\OptionGroups\Models\OptionGroup;
 use App\Domain\OptionValues\Models\OptionValue;
 use App\Domain\Products\Models\Product;
+use App\Domain\Products\Models\ProductOption;
 use App\Services\FilterService\Filterable;
 use Astrotomic\Translatable\Translatable;
 use Illuminate\Database\Eloquent\Model;
@@ -116,6 +117,11 @@ class Option extends Model
     public function optionValues()
     {
         return $this->hasMany(OptionValue::class);
+    }
+
+    public function optionValue()
+    {
+        return $this->belongsToMany(ProductOption::class,'product_options');
     }
 
     public function products()
