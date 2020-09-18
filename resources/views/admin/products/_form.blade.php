@@ -133,11 +133,14 @@
 {{--                </div>--}}
             </div>
         </div>
+        @isset($product)
         <div class="tab-pane" id="product_attributes_tab" role="tabpanel">
-            @component('admin.products._attributes', ['options' => $product->options ?? null, 'product'=>$product ?? null])
+            @component('admin.products._attributes', [
+                'options' => $productCategoryOptions ?? null,
+                'product' => $product ?? null ])
             @endcomponent
         </div>
-
+        @endisset
     </div>
 </div>
 

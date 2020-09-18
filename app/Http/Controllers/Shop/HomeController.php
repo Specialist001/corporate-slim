@@ -11,10 +11,11 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $serviceCategories = ServiceCategory::withTranslation()->orderBy('order')->get();
-
-        return view('site.home.index', [
-            'serviceCategories' => $serviceCategories,
+//        $serviceCategories = ServiceCategory::withTranslation()->orderBy('order')->get();
+//
+        return view('shop.home.index', [
+//            'serviceCategories' => $serviceCategories,
         ]);
+//        dd(2);
     }
 }

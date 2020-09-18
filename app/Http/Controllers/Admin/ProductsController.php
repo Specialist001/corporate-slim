@@ -28,7 +28,7 @@ class ProductsController extends Controller
         $products = Product::withTranslation()->filter($filter)->paginateFilter();
 
         return view('admin.products.index', [
-            'filter' => $filter->filters(),
+            'filters' => $filter->filters(),
             'products' => $products
         ]);
     }
@@ -90,12 +90,23 @@ class ProductsController extends Controller
         $productCategories = ProductCategory::get();
         $brands = Brand::actives()->get();
         $units = Unit::actives()->get();
+        $productCategoryOptions = $product->category->optionGroups()->first()->options;
+
+//        foreach ($product->category->optionGroups()->first()->options as $opt) {
+//            dd($opt->optionValues);
+//            echo $opt->name .': <br>';
+//            foreach ($opt->optionValues as $optionValue) {
+//                echo ($optionValue->name)."<br>";
+//            }
+//        }
+//        exit;
 
         return view('admin.products.edit', [
             'productCategories' => $productCategories,
             'brands' => $brands,
             'units' => $units,
             'product' => $product,
+            'productCategoryOptions' => $productCategoryOptions,
         ]);
     }
 
@@ -110,9 +121,9 @@ class ProductsController extends Controller
     {
         try {
             $this->dispatchNow(new UpdateProductJob($request, $product));
-            return redirect()->route('admin.products.index')->with('success', trans('admin.flash.created'));
+            return redirect()->route('admin.products.edit', $product)->with('success', trans('admin.flash.edited'));
         } catch(\Exception $exception) {
-            return redirect()->route('admin.products.index')->with('error', trans('admin.flash.not_created'));
+            return redirect()->route('admin.products.edit', $product)->with('error', trans('admin.flash.not_edited'));
         }
     }
 

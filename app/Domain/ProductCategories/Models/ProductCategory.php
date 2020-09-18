@@ -174,6 +174,11 @@ class ProductCategory extends Model
         return $this->hasMany(Product::class);
     }
 
+    public function optionGroup()
+    {
+        return $this->belongsTo(OptionGroup::class,'option_group_id');
+    }
+
     public function optionGroups()
     {
         return $this->belongsToMany(OptionGroup::class);

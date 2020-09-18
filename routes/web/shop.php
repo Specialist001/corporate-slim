@@ -1,7 +1,7 @@
 <?php
 
 Route::group([
-    'domain' => config('app.domain'),
+    'domain' => 'shop.'.config('app.domain'),
     'namespace' => 'Shop',
     'as' => 'shop.'
 ], function () {
@@ -24,7 +24,7 @@ Route::group([
     	Route::group([
             'middleware' => ['role:user']
         ], function () {
-            
+
         });
     });
 

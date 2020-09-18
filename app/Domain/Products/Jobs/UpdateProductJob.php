@@ -77,6 +77,18 @@ class UpdateProductJob implements ShouldQueue
                 $product->save();
             }
 
+            $options = $this->request->input('option');
+            $optArray = [];
+            foreach ($options as $o => $option) {
+                $optArray[$o] = [
+                    'product_id' => $product->id,
+                    'option_id' => $o,
+                    'option_value_id' => (int) $option
+                ];
+            }
+            $product->options()->detach();
+            $product->options()->attach($optArray);
+
         } catch (\Exception $exception) {
             \DB::rollBack();
             throw $exception;

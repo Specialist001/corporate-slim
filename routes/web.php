@@ -16,5 +16,6 @@ Route::group([
     'middleware' => ['localize', 'localizationRedirect']
 ], function (){
     require 'web/site.php';
+    require 'web/shop.php';
 });
 require 'web/admin.php';
