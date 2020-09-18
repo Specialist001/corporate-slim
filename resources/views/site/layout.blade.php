@@ -18,7 +18,6 @@
 
     <link href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/owl/css/owl.carousel.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('vendor/owl/css/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/magnific-popup/css/magnific-popup.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/themify-icons/css/themify-icons.css') }}" rel="stylesheet">

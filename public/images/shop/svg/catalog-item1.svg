@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="54" height="68" viewBox="0 0 54 68">
+  <g fill="none" fill-rule="evenodd" stroke="#FF0000" stroke-width="2" transform="translate(1 1)" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M20 0L10 0 7.112 15.886C6.388 19.868 4.466 23.534 1.606 26.394L0 28 0 60 26 60 26 22 20 0zM52 28L50.394 26.394C47.534 23.534 45.612 19.868 44.888 15.886L42 0 32 0 26 22 26 60 52 60 52 28z"/>
+    <polygon points="0 66 26 66 26 60 0 60"/>
+    <polygon points="26 66 52 66 52 60 26 60"/>
+    <polygon points="40 38 52 38 52 32 40 32"/>
+    <polygon points="40 52 52 52 52 46 40 46"/>
+    <polygon points="0 38 12 38 12 32 0 32"/>
+    <polygon points="0 52 12 52 12 46 0 46"/>
+    <path d="M22 34L30 34M22 48L30 48"/>
+  </g>
+</svg>
