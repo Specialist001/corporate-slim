@@ -64,8 +64,9 @@
     <script type="text/javascript" src="{{ asset('vendor/pace/js/pace.js') }}"></script>
 
     @stack('scripts')
-
+{{--    <script src="https://js.pusher.com/7.0/pusher.min.js"></script>--}}
     <script type="text/javascript" src="{{ asset('shop/js/main.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/app.js') }}"></script>
 
 </body>
 </html>
