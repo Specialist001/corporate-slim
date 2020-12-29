@@ -11,11 +11,14 @@
         "php": "^7.2",
         "astrotomic/laravel-translatable": "^11.7",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "6.*",
         "intervention/image": "^2.5",
         "laravel/framework": "^6.2",
+        "laravel/passport": "8.*",
         "laravel/telescope": "^3.1",
         "laravel/tinker": "^2.0",
         "mcamara/laravel-localization": "^1.4",
+        "symfony/psr-http-message-bridge": "^2.0",
         "unisharp/laravel-filemanager": "^2.0"
     },
     "require-dev": {
