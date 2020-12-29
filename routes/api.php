@@ -13,6 +13,20 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::group([
+    'middleware' => ['localize', 'localizationRedirect'],
+    'domain' => 'api.'.config('app.domain'),
+    'namespace' => 'Api',
+    'as' => 'api.'
+], function (){
+    Route::group([
+    ], function () {
+
+    });
+});
+Route::post('login', 'UserController@login');
+Route::post('register', 'UserController@register');
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });

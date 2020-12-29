@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 /**
  * App\Domain\Users\Models\User
@@ -57,7 +58,7 @@ use Illuminate\Notifications\Notifiable;
  */
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use Notifiable, SoftDeletes, Filterable;
+    use Notifiable, SoftDeletes, Filterable, HasApiTokens;
 
     const ROLE_ADMIN = 'admin';
     const ROLE_MANAGER = 'manager';
