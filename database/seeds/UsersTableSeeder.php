@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
                 'role' => 'admin',
                 'name' => 'Admin',
                 'username' => 'admin',
-                'password' => Hash::make('admin1234'),
+                'password' => Hash::make('admin_._1234'),
                 'active' => '1',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),

@@ -1,6 +1,6 @@
 <?php
 
-use App\Domain\Contacts\Model\Contact;
+use App\Domain\Contacts\Models\Contact;
 use Illuminate\Database\Seeder;
 
 class ContactsTableSeeder extends Seeder
