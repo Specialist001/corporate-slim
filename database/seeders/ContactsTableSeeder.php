@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Domain\Contacts\Models\Contact;
 use Illuminate\Database\Seeder;
 

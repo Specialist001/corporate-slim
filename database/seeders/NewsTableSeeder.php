@@ -1,5 +1,7 @@
 <?php
 
+namespace Database\Seeders;
+
 use App\Services\TranslitService;
 use Illuminate\Database\Seeder;
 
@@ -31,16 +33,16 @@ class NewsTableSeeder extends Seeder
                     'title' => $item,
                     'short' => $item.' short',
                     'full' => $item.' full',
- 
+
                     'meta_title' => $item.' title',
                     'meta_keywords' => $item.' keywords',
                     'meta_description' => $item.' description',
 
                     'locale' => 'ru',
-                    
+
                 ]
             ]);
         }
-        
+
     }
 }

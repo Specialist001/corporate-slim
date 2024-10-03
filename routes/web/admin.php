@@ -1,8 +1,22 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\BrandsController;
+use App\Http\Controllers\Admin\HomeController;
+use App\Http\Controllers\Admin\NewsController;
+use App\Http\Controllers\Admin\OptionGroupsController;
+use App\Http\Controllers\Admin\OptionsController;
+use App\Http\Controllers\Admin\PageCategoriesController;
+use App\Http\Controllers\Admin\PagesController;
+use App\Http\Controllers\Admin\ProductCategoriesController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\ServiceCategoriesController;
+use App\Http\Controllers\Admin\ServicesController;
+use App\Http\Controllers\Admin\UnitsController;
+
 Route::group([
     'domain' => 'admin.'.config('app.domain'),
-    'namespace' => 'Admin',
+//    'namespace' => 'Admin',
     'as' => 'admin.'
 ], function () {
     //Route::fallback('ErrorController@notFound')->name('404');
@@ -11,9 +25,9 @@ Route::group([
         'namespace' => 'Auth',
         'as' => 'auth.'
     ], function () {
-        Route::get('login', 'LoginController@showLoginForm')->name('loginForm');
-        Route::post('login', 'LoginController@login')->name('login');
-        Route::get('logout', 'LoginController@logout')->name('logout');
+        Route::get('login', [LoginController::class, 'showLoginForm'])->name('loginForm');
+        Route::post('login', [LoginController::class, 'login'])->name('login');
+        Route::get('logout', [LoginController::class, 'logout'])->name('logout');
     });
 
     Route::group([
@@ -22,72 +36,76 @@ Route::group([
         Route::group([
             'middleware' => ['role:admin,manager']
         ], function () {
-            Route::get('/', 'HomeController@index')->name('home');
+            Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::group(['prefix' => 'laravel-filemanager'], function () {
+     \UniSharp\LaravelFilemanager\Lfm::routes();
+ });
 
             Route::group([
                 'prefix' => 'news',
                 'as' => 'news.',
             ], function () {
-                Route::get('', 'NewsController@index')->name('index');
-                Route::get('create', 'NewsController@create')->name('create');
-                Route::post('store', 'NewsController@store')->name('store');
-                Route::get('edit/{news}', 'NewsController@edit')->name('edit');
-                Route::put('update/{news}', 'NewsController@update')->name('update');
-                Route::delete('destroy/{news}', 'NewsController@destroy')->name('destroy');
-                Route::delete('image/{news?}', 'NewsController@deleteImage')->name('destroy.image');
+                Route::get('', [NewsController::class, 'index'])->name('index');
+                Route::get('create', [NewsController::class, 'create'])->name('create');
+                Route::post('store', [NewsController::class, 'store'])->name('store');
+                Route::get('edit/{news}', [NewsController::class, 'edit'])->name('edit');
+                Route::put('update/{news}', [NewsController::class, 'update'])->name('update');
+                Route::delete('destroy/{news}', [NewsController::class, 'destroy'])->name('destroy');
+                Route::delete('image/{news?}', [NewsController::class, 'deleteImage'])->name('destroy.image');
             });
 
             Route::group([
                 'prefix' => 'service-categories',
                 'as' => 'service-categories.',
             ], function () {
-                Route::get('', 'ServiceCategoriesController@index')->name('index');
-                Route::get('create', 'ServiceCategoriesController@create')->name('create');
-                Route::post('store', 'ServiceCategoriesController@store')->name('store');
-                Route::get('edit/{serviceCategory}', 'ServiceCategoriesController@edit')->name('edit');
-                Route::put('update/{serviceCategory}', 'ServiceCategoriesController@update')->name('update');
-                Route::delete('destroy/{serviceCategory}', 'ServiceCategoriesController@destroy')->name('destroy');
-                Route::delete('image/{serviceCategory?}', 'ServiceCategoriesController@deleteImage')->name('destroy.image');
-                Route::delete('icon/{serviceCategory?}', 'ServiceCategoriesController@deleteIcon')->name('destroy.icon');
+                Route::get('', [ServiceCategoriesController::class,'index'])->name('index');
+                Route::get('create', [ServiceCategoriesController::class,'create'])->name('create');
+                Route::post('store', [ServiceCategoriesController::class,'store'])->name('store');
+                Route::get('edit/{serviceCategory}', [ServiceCategoriesController::class,'edit'])->name('edit');
+                Route::put('update/{serviceCategory}', [ServiceCategoriesController::class,'update'])->name('update');
+                Route::delete('destroy/{serviceCategory}', [ServiceCategoriesController::class,'destroy'])->name('destroy');
+                Route::delete('image/{serviceCategory?}', [ServiceCategoriesController::class,'deleteImage'])->name('destroy.image');
+                Route::delete('icon/{serviceCategory?}', [ServiceCategoriesController::class,'deleteIcon'])->name('destroy.icon');
             });
 
             Route::group([
                 'prefix' => 'services',
                 'as' => 'services.',
             ], function () {
-                Route::get('', 'ServicesController@index')->name('index');
-                Route::get('create', 'ServicesController@create')->name('create');
-                Route::post('store', 'ServicesController@store')->name('store');
-                Route::get('edit/{service}', 'ServicesController@edit')->name('edit');
-                Route::put('update/{service}', 'ServicesController@update')->name('update');
-                Route::delete('destroy/{service}', 'ServicesController@destroy')->name('destroy');
-                Route::delete('image/{service?}', 'ServicesController@deleteImage')->name('destroy.image');
-                Route::delete('icon/{service?}', 'ServicesController@deleteIcon')->name('destroy.icon');
+                Route::get('', [ServicesController::class, 'index'])->name('index');
+                Route::get('create', [ServicesController::class, 'create'])->name('create');
+                Route::post('store', [ServicesController::class, 'store'])->name('store');
+                Route::get('edit/{service}', [ServicesController::class, 'edit'])->name('edit');
+                Route::put('update/{service}', [ServicesController::class, 'update'])->name('update');
+                Route::delete('destroy/{service}', [ServicesController::class, 'destroy'])->name('destroy');
+                Route::delete('image/{service?}', [ServicesController::class, 'deleteImage'])->name('destroy.image');
+                Route::delete('icon/{service?}', [ServicesController::class, 'deleteIcon'])->name('destroy.icon');
             });
 
             Route::group([
                 'prefix' => 'page-categories',
                 'as' => 'page-categories.',
             ], function () {
-                Route::get('', 'PageCategoriesController@index')->name('index');
-                Route::get('create', 'PageCategoriesController@create')->name('create');
-                Route::post('store', 'PageCategoriesController@store')->name('store');
-                Route::get('edit/{pageCategory}', 'PageCategoriesController@edit')->name('edit');
-                Route::put('update/{pageCategory}', 'PageCategoriesController@update')->name('update');
-                Route::delete('destroy/{pageCategory}', 'PageCategoriesController@destroy')->name('destroy');
+                Route::get('', [PageCategoriesController::class, 'index'])->name('index');
+                Route::get('create', [PageCategoriesController::class, 'create'])->name('create');
+                Route::post('store', [PageCategoriesController::class, 'store'])->name('store');
+                Route::get('edit/{pageCategory}', [PageCategoriesController::class, 'edit'])->name('edit');
+                Route::put('update/{pageCategory}', [PageCategoriesController::class, 'update'])->name('update');
+                Route::delete('destroy/{pageCategory}', [PageCategoriesController::class, 'destroy'])->name('destroy');
             });
 
             Route::group([
                 'prefix' => 'pages',
                 'as' => 'pages.',
             ], function () {
-                Route::get('', 'PagesController@index')->name('index');
-                Route::get('create', 'PagesController@create')->name('create');
-                Route::post('store', 'PagesController@store')->name('store');
-                Route::get('edit/{page}', 'PagesController@edit')->name('edit');
-                Route::put('update/{page}', 'PagesController@update')->name('update');
-                Route::delete('destroy/{page}', 'PagesController@destroy')->name('destroy');
-                Route::delete('image/{page?}', 'PagesController@deleteImage')->name('destroy.image');
+                Route::get('', [PagesController::class, 'index'])->name('index');
+                Route::get('create', [PagesController::class, 'create'])->name('create');
+                Route::post('store', [PagesController::class, 'store'])->name('store');
+                Route::get('edit/{page}', [PagesController::class, 'edit'])->name('edit');
+                Route::put('update/{page}', [PagesController::class, 'update'])->name('update');
+                Route::delete('destroy/{page}', [PagesController::class, 'destroy'])->name('destroy');
+                Route::delete('image/{page?}', [PagesController::class, 'deleteImage'])->name('destroy.image');
             });
 
             /* Shop */
@@ -95,82 +113,83 @@ Route::group([
                 'prefix' => 'brands',
                 'as' => 'brands.',
             ], function () {
-                Route::get('', 'BrandsController@index')->name('index');
-                Route::get('create', 'BrandsController@create')->name('create');
-                Route::post('store', 'BrandsController@store')->name('store');
-                Route::get('edit/{brand}', 'BrandsController@edit')->name('edit');
-                Route::put('update/{brand}', 'BrandsController@update')->name('update');
-                Route::delete('destroy/{brand}', 'BrandsController@destroy')->name('destroy');
-                Route::delete('logo/{brand?}', 'BrandsController@deleteLogo')->name('destroy.logo');
+                Route::get('', [BrandsController::class, 'index'])->name('index');
+                Route::get('create', [BrandsController::class, 'create'])->name('create');
+                Route::post('store', [BrandsController::class, 'store'])->name('store');
+                Route::get('edit/{brand}', [BrandsController::class, 'edit'])->name('edit');
+                Route::put('update/{brand}', [BrandsController::class, 'update'])->name('update');
+                Route::delete('destroy/{brand}', [BrandsController::class, 'destroy'])->name('destroy');
+                Route::delete('logo/{brand?}', [BrandsController::class, 'deleteLogo'])->name('destroy.logo');
             });
+
 
             Route::group([
                 'prefix' => 'units',
                 'as' => 'units.',
             ], function () {
-                Route::get('', 'UnitsController@index')->name('index');
-                Route::get('create', 'UnitsController@create')->name('create');
-                Route::post('store', 'UnitsController@store')->name('store');
-                Route::get('edit/{unit}', 'UnitsController@edit')->name('edit');
-                Route::put('update/{unit}', 'UnitsController@update')->name('update');
-                Route::delete('destroy/{unit}', 'UnitsController@destroy')->name('destroy');
+                Route::get('', [UnitsController::class, 'index'])->name('index');
+                Route::get('create', [UnitsController::class, 'create'])->name('create');
+                Route::post('store', [UnitsController::class, 'store'])->name('store');
+                Route::get('edit/{unit}', [UnitsController::class, 'edit'])->name('edit');
+                Route::put('update/{unit}', [UnitsController::class, 'update'])->name('update');
+                Route::delete('destroy/{unit}', [UnitsController::class, 'destroy'])->name('destroy');
             });
 
             Route::group([
                 'prefix' => 'option-groups',
                 'as' => 'option-groups.',
             ], function () {
-                Route::get('', 'OptionGroupsController@index')->name('index');
-                Route::get('create', 'OptionGroupsController@create')->name('create');
-                Route::post('store', 'OptionGroupsController@store')->name('store');
-                Route::get('edit/{optionGroup}', 'OptionGroupsController@edit')->name('edit');
-                Route::put('update/{optionGroup}', 'OptionGroupsController@update')->name('update');
-                Route::delete('destroy/{optionGroup}', 'OptionGroupsController@destroy')->name('destroy');
+                Route::get('', [OptionGroupsController::class, 'index'])->name('index');
+                Route::get('create', [OptionGroupsController::class, 'create'])->name('create');
+                Route::post('store', [OptionGroupsController::class, 'store'])->name('store');
+                Route::get('edit/{optionGroup}', [OptionGroupsController::class, 'edit'])->name('edit');
+                Route::put('update/{optionGroup}', [OptionGroupsController::class, 'update'])->name('update');
+                Route::delete('destroy/{optionGroup}', [OptionGroupsController::class, 'destroy'])->name('destroy');
             });
 
             Route::group([
                 'prefix' => 'options',
                 'as' => 'options.',
             ], function () {
-                Route::get('', 'OptionsController@index')->name('index');
-                Route::get('create', 'OptionsController@create')->name('create');
-                Route::post('store', 'OptionsController@store')->name('store');
-                Route::get('edit/{option}', 'OptionsController@edit')->name('edit');
-                Route::put('update/{option}', 'OptionsController@update')->name('update');
-                Route::delete('destroy/{option}', 'OptionsController@destroy')->name('destroy');
+                Route::get('', [OptionsController::class, 'index'])->name('index');
+                Route::get('create', [OptionsController::class, 'create'])->name('create');
+                Route::post('store', [OptionsController::class, 'store'])->name('store');
+                Route::get('edit/{option}', [OptionsController::class, 'edit'])->name('edit');
+                Route::put('update/{option}', [OptionsController::class, 'update'])->name('update');
+                Route::delete('destroy/{option}', [OptionsController::class, 'destroy'])->name('destroy');
 
-                Route::get('getOptionValue/{optionValue}', 'OptionsController@getOptionValue')->name('getOptionValue');
-                Route::get('createOptionValue/{option}', 'OptionsController@createOptionValue')->name('createOptionValue');
-                Route::post('addOptionValue', 'OptionsController@addOptionValue')->name('addOptionValue');
-                Route::post('updateOptionValue', 'OptionsController@updateOptionValue')->name('updateOptionValue');
-                Route::delete('deleteOptionValue/{optionValue}', 'OptionsController@deleteOptionValue')->name('deleteOptionValue');
+                Route::get('getOptionValue/{optionValue}', [OptionsController::class, 'getOptionValue'])->name('getOptionValue');
+                Route::get('createOptionValue/{option}', [OptionsController::class, 'createOptionValue'])->name('createOptionValue');
+                Route::post('addOptionValue', [OptionsController::class, 'addOptionValue'])->name('addOptionValue');
+                Route::post('updateOptionValue', [OptionsController::class, 'updateOptionValue'])->name('updateOptionValue');
+                Route::delete('deleteOptionValue/{optionValue}', [OptionsController::class, 'deleteOptionValue'])->name('deleteOptionValue');
             });
 
             Route::group([
                 'prefix' => 'product-categories',
                 'as' => 'product-categories.',
             ], function () {
-                Route::get('', 'ProductCategoriesController@index')->name('index');
-                Route::get('create', 'ProductCategoriesController@create')->name('create');
-                Route::post('store', 'ProductCategoriesController@store')->name('store');
-                Route::get('edit/{productCategory}', 'ProductCategoriesController@edit')->name('edit');
-                Route::put('update/{productCategory}', 'ProductCategoriesController@update')->name('update');
-                Route::delete('destroy/{productCategory}', 'ProductCategoriesController@destroy')->name('destroy');
-                Route::delete('image/{productCategory?}', 'ProductCategoriesController@deleteImage')->name('destroy.image');
-                Route::delete('icon/{productCategory?}', 'ProductCategoriesController@deleteIcon')->name('destroy.icon');
+                Route::get('', [ProductCategoriesController::class, 'index'])->name('index');
+                Route::get('create', [ProductCategoriesController::class, 'create'])->name('create');
+                Route::post('store', [ProductCategoriesController::class, 'store'])->name('store');
+                Route::get('edit/{productCategory}', [ProductCategoriesController::class, 'edit'])->name('edit');
+                Route::put('update/{productCategory}', [ProductCategoriesController::class, 'update'])->name('update');
+                Route::delete('destroy/{productCategory}', [ProductCategoriesController::class, 'destroy'])->name('destroy');
+                Route::delete('image/{productCategory?}', [ProductCategoriesController::class, 'deleteImage'])->name('destroy.image');
+                Route::delete('icon/{productCategory?}', [ProductCategoriesController::class, 'deleteIcon'])->name('destroy.icon');
             });
 
             Route::group([
                 'prefix' => 'products',
                 'as' => 'products.',
             ], function () {
-                Route::get('', 'ProductsController@index')->name('index');
-                Route::get('create', 'ProductsController@create')->name('create');
-                Route::post('store', 'ProductsController@store')->name('store');
-                Route::get('edit/{product}', 'ProductsController@edit')->name('edit');
-                Route::put('update/{product}', 'ProductsController@update')->name('update');
-                Route::delete('destroy/{product}', 'ProductsController@destroy')->name('destroy');
-                Route::delete('image/{product?}', 'ProductsController@deleteImage')->name('destroy.image');
+                Route::get('', [ProductsController::class, 'index'])->name('index');
+                Route::get('create', [ProductsController::class, 'create'])->name('create');
+                Route::post('store', [ProductsController::class, 'store'])->name('store');
+                Route::get('edit/{product}', [ProductsController::class, 'edit'])->name('edit');
+                Route::put('update/{product}', [ProductsController::class, 'update'])->name('update');
+                Route::delete('destroy/{product}', [ProductsController::class, 'destroy'])->name('destroy');
+                Route::delete('image/{product?}', [ProductsController::class, 'deleteImage'])->name('destroy.image');
             });
         });
 
