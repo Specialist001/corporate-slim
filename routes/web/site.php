@@ -1,22 +1,27 @@
 <?php
 
+use App\Http\Controllers\Site\ErrorController;
+use App\Http\Controllers\Site\HomeController;
+use App\Http\Controllers\Site\NewsController;
+use App\Http\Controllers\Site\ServiceCategoriesController;
+
 Route::group([
     'domain' => config('app.domain'),
     'namespace' => 'Site',
     'as' => 'site.'
 ], function () {
-    Route::fallback('ErrorController@notFound')->name('404');
+    Route::fallback([ErrorController::class, 'notFound'])->name('404');
 
-    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('home');
 
-    Route::get('services/{slug}', 'ServiceCategoriesController@show')->name('services.show');
+    Route::get('services/{slug}', [ServiceCategoriesController::class, 'show'])->name('services.show');
 
     Route::group([
         'prefix' => 'news',
         'as' => 'news.',
     ], function () {
-        Route::get('', 'NewsController@index')->name('index');
-        Route::get('{slug}', 'NewsController@show')->name('show');
+        Route::get('', [NewsController::class, 'index'])->name('index');
+        Route::get('{slug}', [NewsController::class,'show'])->name('show');
 //        Route::get('create', 'NewsController@create')->name('create');
 //        Route::post('store', 'NewsController@store')->name('store');
 //        Route::put('update/{news}', 'NewsController@update')->name('update');
